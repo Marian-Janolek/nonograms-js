@@ -5,7 +5,11 @@ const HorizontalHints = ({ hints }) => {
     <Wrapper>
       {hints?.map((hint, i) => {
         if (hint.length === 0) {
-          return <span key={i}>0</span>;
+          return (
+            <span className="zero-span" key={i}>
+              0
+            </span>
+          );
         }
         return (
           <div key={i} className="hints">
@@ -23,14 +27,14 @@ const Wrapper = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  gap: 1.25rem;
   width: 100%;
-  padding-right: 0.6rem;
   line-height: 1.4;
 
-  span {
+  .zero-span {
     font-size: 1.2rem;
     color: #fff;
+    width: 2rem;
+    text-align: center;
   }
 
   .hints {
@@ -38,6 +42,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    width: 2rem;
     span {
       font-size: 1.2rem;
       color: #fff;

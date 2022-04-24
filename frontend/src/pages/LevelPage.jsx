@@ -5,6 +5,7 @@ import {
   GridBoard,
   HorizontalHints,
   Loading,
+  Preview,
   VerticalHints,
 } from "../components";
 import { BsArrowLeft } from "react-icons/bs";
@@ -39,8 +40,11 @@ const LevelPage = () => {
     <Wrapper className="wrapper">
       <div className="heading">Level </div>
       <div className="board">
-        <div className="hor-hints">
-          <HorizontalHints hints={single_level.horHints} />
+        <div className="hor-flex">
+          <Preview />
+          <div className="hor-hints">
+            <HorizontalHints hints={single_level.horHints} />
+          </div>
         </div>
         <div className="game">
           <div className="ver-hints">
@@ -67,9 +71,12 @@ const Wrapper = styled.div`
   position: relative;
 
   .board {
-    .hor-hints {
-      background-color: black;
-      color: white;
+    .hor-flex {
+      display: flex;
+      .hor-hints {
+        background-color: black;
+        color: white;
+      }
     }
     .game {
       display: flex;

@@ -7,7 +7,7 @@ const DifficultyMenu = ({ heading, levels, difficulty }) => {
       <Navbar />
       <div className="heading">{heading}</div>
       <div className="cards">
-        {levels.map((level, i) => {
+        {levels?.map((level, i) => {
           if (level.difficulty === difficulty) {
             return <LevelCard key={i} level={i + 1} levelId={level._id} />;
           }

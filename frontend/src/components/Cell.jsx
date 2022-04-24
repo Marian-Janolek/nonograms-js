@@ -1,15 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FaTimes } from 'react-icons/fa';
+import React from "react";
+import styled from "styled-components";
+import { FaTimes } from "react-icons/fa";
 
 const Cell = ({ clicked, handleClick }) => {
   return (
     <Wrapper>
       <div
-        className={`${clicked === '1' ? 'black-bg' : 'white-bg'}`}
+        className={`${clicked === "1" ? "black-bg" : "white-bg"}`}
         onClick={handleClick}
       >
-        {clicked === 'X' && (
+        {clicked === "X" && (
           <span>
             <FaTimes />
           </span>
@@ -25,13 +25,13 @@ const Wrapper = styled.div`
   border: 1px solid black;
   .black-bg {
     background-color: black;
-    height: 100%;
-    width: 100%;
+    height: 95%;
+    width: 95%;
   }
   .white-bg {
     background-color: white;
-    height: 100%;
-    width: 100%;
+    height: 95%;
+    width: 95%;
   }
   span svg {
     font-size: 5rem;

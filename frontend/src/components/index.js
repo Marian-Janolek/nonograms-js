@@ -11,6 +11,7 @@ import GridBoard from "./GridBoard";
 import VerticalHints from "./VerticalHints";
 import HorizontalHints from "./HorizontalHints";
 import Loading from "./Loading";
+import Preview from "./Preview";
 
 export {
   Navbar,
@@ -26,4 +27,5 @@ export {
   VerticalHints,
   HorizontalHints,
   Loading,
+  Preview,
 };

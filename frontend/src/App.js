@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Loading } from "./components";
+import { useAppContext } from "./context/appContext";
 import {
   Home,
   SelectGame,
@@ -13,6 +15,10 @@ import {
 } from "./pages";
 
 function App() {
+  const { levels_loading: loading } = useAppContext();
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <Router>
       <Routes>

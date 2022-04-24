@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import {
   REGISTER_USER_BEGIN,
   REGISTER_USER_FAIL,
@@ -15,6 +21,7 @@ import {
 } from "../actions";
 import reducer from "../reducer/appReducer";
 import axios from "axios";
+import { level_url } from "../utils/constants";
 
 const token = localStorage.getItem("token");
 const user = localStorage.getItem("user");
@@ -44,6 +51,11 @@ const AppProvider = ({ children }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    fetchLevels(`${level_url}/all`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const registerUser = async (currentUser) => {
     dispatch({ type: REGISTER_USER_BEGIN });
@@ -106,7 +118,6 @@ const AppProvider = ({ children }) => {
         openModal,
         isModalOpen,
         fetchSingleLevel,
-        fetchLevels,
       }}
     >
       {children}

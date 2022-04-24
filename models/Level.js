@@ -9,11 +9,11 @@ const LevelSchema = new mongoose.Schema(
     },
     verHints: {
       type: [[Number]],
-      required: [true, "Please provide vertical hints as String"],
+      required: [true, "Please provide vertical hints as 2d array"],
     },
     horHints: {
       type: [[Number]],
-      required: [true, "Please provide horizontal hints as String"],
+      required: [true, "Please provide horizontal hints as 2d array"],
     },
     result: {
       type: [Number],
