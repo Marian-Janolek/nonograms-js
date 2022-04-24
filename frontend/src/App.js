@@ -21,11 +21,11 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/selectGame" element={<SelectGame />} />
         <Route path="/selectGame/easy" element={<EasyMenu />} />
-        <Route path="/selectGame/easy/:level" element={<LevelPage />} />
+        <Route path="/selectGame/easy/:levelId" element={<LevelPage />} />
         <Route path="/selectGame/medium" element={<MediumMenu />} />
-        <Route path="/selectGame/medium/:levelId" element={<MediumMenu />} />
+        <Route path="/selectGame/medium/:levelId" element={<LevelPage />} />
         <Route path="/selectGame/hard" element={<HardMenu />} />
-        <Route path="/selectGame/hard/:levelId" element={<HardMenu />} />
+        <Route path="/selectGame/hard/:levelId" element={<LevelPage />} />
         <Route path="/customGame" element={<CustomGame />} />
       </Routes>
     </Router>

@@ -1,56 +1,24 @@
 import styled from "styled-components";
 
-const VerticalHints = () => {
+const VerticalHints = ({ hints }) => {
   return (
     <Wrapper>
-      <div className="hints">
-        <span>1 </span>
-        <span>2 </span>
-        <span>4 </span>
-      </div>
-      <div className="hints">
-        <span>2 </span>
-        <span>2 </span>
-      </div>
-      <div className="hints">
-        <span>4 </span>
-        <span>1 </span>
-        <span>2 </span>
-      </div>
-      <div className="hints">
-        <span>2 </span>
-        <span>1 </span>
-        <span>1 </span>
-      </div>
-      <div className="hints">
-        <span>2 </span>
-        <span>1 </span>
-        <span>1 </span>
-      </div>
-      <div className="hints">
-        <span>2 </span>
-        <span>1 </span>
-        <span>1 </span>
-      </div>
-      <div className="hints">
-        <span>1 </span>
-        <span>4 </span>
-        <span>1 </span>
-      </div>
-      <div className="hints">
-        <span>1 </span>
-        <span>2 </span>
-        <span>2 </span>
-      </div>
-      <div className="hints">
-        <span>1 </span>
-        <span>2 </span>
-        <span>1 </span>
-      </div>
-      <div className="hints">
-        <span>7 </span>
-        <span>1 </span>
-      </div>
+      {hints?.map((hint, i) => {
+        if (hint.length === 0) {
+          return (
+            <span key={i} style={{ textAlign: "right" }}>
+              0
+            </span>
+          );
+        }
+        return (
+          <div key={i} className="hints">
+            {hint.map((h, j) => {
+              return <span key={j}>{h}</span>;
+            })}
+          </div>
+        );
+      })}
     </Wrapper>
   );
 };
@@ -62,13 +30,17 @@ const Wrapper = styled.div`
   padding-left: 0.4rem;
   padding-right: 0.5rem;
   gap: 0.09rem;
+  span {
+    font-size: 1.2rem;
+    color: #fff;
+  }
 
   .hints {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    gap: 0.6rem;
+    gap: 0.5rem;
     span {
       font-size: 1.2rem;
       color: #fff;

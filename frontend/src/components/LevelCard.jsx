@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const LevelCard = ({ level, icon }) => {
+const LevelCard = ({ level, icon, levelId }) => {
   return (
-    <Link to={`/selectGame/easy/${level}`}>
+    <Link to={`/selectGame/easy/${levelId}`}>
       <Wrapper>
         <span className="icon">{icon}</span>
         <span>{level}</span>

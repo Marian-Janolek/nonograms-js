@@ -4,22 +4,47 @@ import {
   Button,
   GridBoard,
   HorizontalHints,
+  Loading,
   VerticalHints,
 } from "../components";
 import { BsArrowLeft } from "react-icons/bs";
 import Modal from "../components/Modal";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useAppContext } from "../context/appContext";
+import { level_url } from "../utils/constants";
 
 const LevelPage = () => {
+  const { levelId } = useParams();
+  const { fetchSingleLevel, single_level_loading, single_level } =
+    useAppContext();
+  // const [verticalHints, setVerticalHints] = useState();
+  // const [horizontalHints, setHorizontalHints] = useState();
+
+  useEffect(() => {
+    fetchSingleLevel(`${level_url}/${levelId}`);
+    // if (typeof verHints !== "undefined" && typeof horHints !== "undefined") {
+    //   setVerticalHints(JSON.parse(single_level.verHints));
+    //   setHorizontalHints(JSON.parse(single_level.horHints));
+    // }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [levelId]);
+
+  if (single_level_loading) {
+    return <Loading />;
+  }
+
   return (
     <Wrapper className="wrapper">
-      <div className="heading">Level 1</div>
+      <div className="heading">Level </div>
       <div className="board">
         <div className="hor-hints">
-          <HorizontalHints />
+          <HorizontalHints hints={single_level.horHints} />
         </div>
         <div className="game">
           <div className="ver-hints">
-            <VerticalHints />
+            <VerticalHints hints={single_level.verHints} />
           </div>
           <div className="grid">
             <GridBoard />

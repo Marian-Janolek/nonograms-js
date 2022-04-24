@@ -76,7 +76,10 @@ const AppProvider = ({ children }) => {
     try {
       const { data } = await axios.get(url);
       const levels = data.levels;
-      dispatch({ type: GET_ALL_LEVELS_SUCCESS, payload: levels });
+      dispatch({
+        type: GET_ALL_LEVELS_SUCCESS,
+        payload: levels,
+      });
     } catch (error) {
       dispatch({ type: GET_ALL_LEVELS_FAIL });
     }

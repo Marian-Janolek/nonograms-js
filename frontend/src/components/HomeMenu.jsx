@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Navbar, Button } from '.';
+import styled from "styled-components";
+import { Navbar, Button } from ".";
 
 const HomeMenu = () => {
   return (

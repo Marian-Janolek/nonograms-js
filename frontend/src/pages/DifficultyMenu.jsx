@@ -1,33 +1,18 @@
-import { Button, LevelCard, Navbar } from '../components';
-import styled from 'styled-components';
-import { AiFillLock } from 'react-icons/ai';
+import { Button, LevelCard, Navbar } from "../components";
+import styled from "styled-components";
 
-const DifficultyMenu = ({ heading }) => {
+const DifficultyMenu = ({ heading, levels, difficulty }) => {
   return (
     <Wrapper className="wrapper">
       <Navbar />
       <div className="heading">{heading}</div>
       <div className="cards">
-        <LevelCard level={1} />
-        <LevelCard level={2} icon={<AiFillLock />} />
-        <LevelCard level={3} icon={<AiFillLock />} />
-        <LevelCard level={4} icon={<AiFillLock />} />
-        <LevelCard level={5} icon={<AiFillLock />} />
-        <LevelCard level={6} icon={<AiFillLock />} />
-        <LevelCard level={7} icon={<AiFillLock />} />
-        <LevelCard level={8} icon={<AiFillLock />} />
-        <LevelCard level={9} icon={<AiFillLock />} />
-        <LevelCard level={10} icon={<AiFillLock />} />
-        <LevelCard level={11} icon={<AiFillLock />} />
-        <LevelCard level={12} icon={<AiFillLock />} />
-        <LevelCard level={13} icon={<AiFillLock />} />
-        <LevelCard level={14} icon={<AiFillLock />} />
-        <LevelCard level={15} icon={<AiFillLock />} />
-        <LevelCard level={16} icon={<AiFillLock />} />
-        <LevelCard level={17} icon={<AiFillLock />} />
-        <LevelCard level={18} icon={<AiFillLock />} />
-        <LevelCard level={19} icon={<AiFillLock />} />
-        <LevelCard level={20} icon={<AiFillLock />} />
+        {levels.map((level, i) => {
+          if (level.difficulty === difficulty) {
+            return <LevelCard key={i} level={i + 1} levelId={level._id} />;
+          }
+          return null;
+        })}
       </div>
       <div className="back-btn">
         <Button text="back" path="/selectGame" />

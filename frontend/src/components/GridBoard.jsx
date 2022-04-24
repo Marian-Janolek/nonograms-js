@@ -33,7 +33,7 @@ const GridBoard = () => {
     cells[i] = "1";
     setGameArray(cells);
     win(gameArray, resultArray);
-    win && openModal();
+    // win && openModal();
   };
 
   return (

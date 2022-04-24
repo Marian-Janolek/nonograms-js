@@ -5,6 +5,7 @@ const userRouter = require("./routes/userRoute");
 const levelRouter = require("./routes/levelRoute");
 const cors = require("cors");
 const connectDB = require("./db");
+const importData = require("./importData");
 
 dotenv.config();
 const app = express();
@@ -34,3 +35,4 @@ const start = async () => {
 };
 
 start();
+// importData();

@@ -1,54 +1,20 @@
 import styled from "styled-components";
 
-const HorizontalHints = () => {
+const HorizontalHints = ({ hints }) => {
   return (
     <Wrapper>
-      <div className="hints">
-        <span>1</span>
-        <span>1</span>
-        <span>3</span>
-      </div>
-      <div className="hints">
-        <span>1</span>
-        <span>2</span>
-        <span>1</span>
-      </div>
-      <div className="hints">
-        <span>5</span>
-        <span>1</span>
-        <span>1</span>
-      </div>
-      <div className="hints">
-        <span>5</span>
-        <span>1</span>
-        <span>1</span>
-      </div>
-      <div className="hints">
-        <span>1</span>
-        <span>5</span>
-      </div>
-      <div className="hints">
-        <span>1</span>
-        <span>4</span>
-      </div>
-      <div className="hints">
-        <span>1</span>
-        <span>2</span>
-        <span>1</span>
-      </div>
-      <div className="hints">
-        <span>1</span>
-        <span>3</span>
-      </div>
-      <div className="hints">
-        <span>3</span>
-        <span>2</span>
-      </div>
-      <div className="hints">
-        <span>2</span>
-        <span>2</span>
-        <span>3</span>
-      </div>
+      {hints?.map((hint, i) => {
+        if (hint.length === 0) {
+          return <span key={i}>0</span>;
+        }
+        return (
+          <div key={i} className="hints">
+            {hint.map((h, j) => {
+              return <span key={j}>{h}</span>;
+            })}
+          </div>
+        );
+      })}
     </Wrapper>
   );
 };
@@ -60,6 +26,12 @@ const Wrapper = styled.div`
   gap: 1.25rem;
   width: 100%;
   padding-right: 0.6rem;
+  line-height: 1.4;
+
+  span {
+    font-size: 1.2rem;
+    color: #fff;
+  }
 
   .hints {
     display: flex;

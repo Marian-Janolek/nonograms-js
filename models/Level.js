@@ -8,11 +8,11 @@ const LevelSchema = new mongoose.Schema(
       required: [true, "Please provide difficulty"],
     },
     verHints: {
-      type: String,
+      type: [[Number]],
       required: [true, "Please provide vertical hints as String"],
     },
     horHints: {
-      type: String,
+      type: [[Number]],
       required: [true, "Please provide horizontal hints as String"],
     },
     result: {

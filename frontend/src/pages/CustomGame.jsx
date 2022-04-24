@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import flower from "../assets/flower.jpg";
+import image10 from "../assets/image10.jpg";
 
 const CustomGame = () => {
   const [binaryArray, setBinaryArray] = useState([]);
@@ -19,8 +19,8 @@ const CustomGame = () => {
       for (let i = 0; i < imgData.data.length; i += 4) {
         let count = imgData.data[i] + imgData.data[i + 1] + imgData.data[i + 2];
         let colour = 0;
-        if (count > 483) colour = 255;
-
+        if (count > 383) colour = 255;
+        // 483
         imgData.data[i] = colour;
         imgData.data[i + 1] = colour;
         imgData.data[i + 2] = colour;
@@ -63,6 +63,10 @@ const CustomGame = () => {
         }
       }
     }
+    if (rowHints > 0) {
+      rowArray.push(rowHints);
+      rowHints = 0;
+    }
     vertHints[i] = rowArray;
   }
 
@@ -79,15 +83,19 @@ const CustomGame = () => {
         }
       }
     }
+    if (colHints > 0) {
+      colArray.push(colHints);
+      colHints = 0;
+    }
     horHints[j] = colArray;
   }
   console.log(`result array: ${binaryArray}`);
-  console.log(`vertHints: ${JSON.stringify(vertHints)}`);
-  console.log(`horHints: ${JSON.stringify(horHints)}`);
+  console.log(`vertHints: ${vertHints}`);
+  console.log(`horHints: ${horHints}`);
 
   return (
     <Wrapper>
-      <img src={flower} alt="flower" ref={imageRef} />
+      <img src={image10} alt="image10" ref={imageRef} />
       <canvas width="10" height="10" ref={canvasRef}></canvas>
       <button type="button" onClick={() => {}}>
         convert
@@ -96,6 +104,9 @@ const CustomGame = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  margin-left: 1rem;
+  margin-top: 1rem;
+`;
 
 export default CustomGame;

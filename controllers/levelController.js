@@ -2,15 +2,22 @@ const Level = require("../models/Level");
 const StatusCodes = require("http-status-codes");
 
 const createLevel = async (req, res) => {
-  // const {difficulty, verHints, horHints, result} = req.body
   const level = await Level.create(req.body);
 
   res.status(StatusCodes.CREATED).json({ level });
 };
 
 const getAllLevels = async (req, res) => {
-  const levels = await Level.find({});
-  res.status(StatusCodes.OK).json({ levels, count: levels.length });
+  const easy_levels = await Level.find({ difficulty: "easy" });
+  const medium_levels = await Level.find({ difficulty: "medium" });
+  const hard_levels = await Level.find({ difficulty: "hard" });
+  res.status(StatusCodes.OK).json({
+    levels: {
+      easy_levels,
+      medium_levels,
+      hard_levels,
+    },
+  });
 };
 
 const getSingleLevel = async (req, res) => {

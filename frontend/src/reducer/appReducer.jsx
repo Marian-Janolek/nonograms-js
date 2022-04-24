@@ -40,7 +40,11 @@ const reducer = (state, action) => {
     case GET_ALL_LEVELS_BEGIN:
       return { ...state, levels_loading: true, levels_error: false };
     case GET_ALL_LEVELS_SUCCESS:
-      return { ...state, levels: action.payload, levels_loading: false };
+      return {
+        ...state,
+        levels: action.payload,
+        levels_loading: false,
+      };
     case GET_ALL_LEVELS_FAIL:
       return { ...state, levels_loading: false, levels_error: true };
     case GET_SINGLE_LEVEL_BEGIN:
