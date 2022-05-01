@@ -11,34 +11,42 @@ import {
 import { BsArrowLeft } from "react-icons/bs";
 import Modal from "../components/Modal";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useAppContext } from "../context/appContext";
 import { level_url } from "../utils/constants";
 
 const LevelPage = () => {
   const { levelId } = useParams();
-  const { fetchSingleLevel, single_level_loading, single_level } =
-    useAppContext();
-  // const [verticalHints, setVerticalHints] = useState();
-  // const [horizontalHints, setHorizontalHints] = useState();
+  const {
+    fetchSingleLevel,
+    single_level_loading,
+    single_level,
+    saveProgress,
+    userArray,
+    languageSK,
+  } = useAppContext();
+  const levelRef = useRef();
 
   useEffect(() => {
     fetchSingleLevel(`${level_url}/${levelId}`);
-    // if (typeof verHints !== "undefined" && typeof horHints !== "undefined") {
-    //   setVerticalHints(JSON.parse(single_level.verHints));
-    //   setHorizontalHints(JSON.parse(single_level.horHints));
-    // }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [levelId]);
 
   if (single_level_loading) {
     return <Loading />;
   }
 
+  const handleSave = () => {
+    saveProgress();
+    const progress = {
+      id: single_level._id,
+      userArray,
+    };
+    localStorage.setItem("save-progress", JSON.stringify(progress));
+  };
+
   return (
-    <Wrapper className="wrapper">
-      <div className="heading">Level </div>
+    <Wrapper className="wrapper" ref={levelRef}>
+      <div className="heading">Level {single_level.order} </div>
       <div className="board">
         <div className="hor-flex">
           <Preview />
@@ -51,13 +59,22 @@ const LevelPage = () => {
             <VerticalHints hints={single_level.verHints} />
           </div>
           <div className="grid">
-            <GridBoard />
+            <GridBoard
+              result={single_level.result}
+              currentID={single_level._id}
+            />
           </div>
         </div>
       </div>
       <div className="flex">
-        <Button text="solve" path="/" />
-        <Button text="back" path="/selectGame/easy" icon={<BsArrowLeft />} />
+        <button className="save" onClick={handleSave}>
+          <span> {languageSK ? "uložiť" : "save"} </span>
+        </button>
+        <Button
+          text={`${languageSK ? "späť" : "back"}`}
+          path="/selectGame/easy"
+          icon={<BsArrowLeft />}
+        />
       </div>
       <div>
         <BottonBar />
@@ -69,6 +86,28 @@ const LevelPage = () => {
 
 const Wrapper = styled.div`
   position: relative;
+  .save {
+    text-transform: uppercase;
+    width: 15rem;
+    height: 4rem;
+    box-shadow: 5px 5px 10px #b1b1b1, -5px -5px 10px #fff;
+    border-radius: 20px;
+    background-color: var(--main-color);
+    span {
+      font-size: var(--bigger-font-size);
+      letter-spacing: var(--spacing);
+      font-weight: var(--font-bold);
+      opacity: 0.75;
+    }
+    &:active {
+      box-shadow: inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff;
+      transform: scale(0.98);
+    }
+    @media (min-width: 450px) {
+      width: 20rem;
+      height: 5rem;
+    }
+  }
 
   .board {
     .hor-flex {

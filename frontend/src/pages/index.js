@@ -9,6 +9,8 @@ import ProfilePage from "./ProfilePage";
 import LevelPage from "./LevelPage";
 import My from "./My";
 import CustomGame from "./CustomGame";
+import AboutPage from "./AboutPage";
+import SettingsPage from "./SettingsPage";
 
 export {
   Home,
@@ -22,4 +24,6 @@ export {
   LevelPage,
   My,
   CustomGame,
+  AboutPage,
+  SettingsPage,
 };

@@ -1,7 +1,9 @@
 import { Button, LevelCard, Navbar } from "../components";
 import styled from "styled-components";
+import { useAppContext } from "../context/appContext";
 
 const DifficultyMenu = ({ heading, levels, difficulty }) => {
+  const { languageSK } = useAppContext();
   return (
     <Wrapper className="wrapper">
       <Navbar />
@@ -15,7 +17,7 @@ const DifficultyMenu = ({ heading, levels, difficulty }) => {
         })}
       </div>
       <div className="back-btn">
-        <Button text="back" path="/selectGame" />
+        <Button text={`${languageSK ? "späť" : "back"}`} path="/selectGame" />
       </div>
     </Wrapper>
   );
@@ -30,6 +32,14 @@ const Wrapper = styled.main`
     gap: 1rem;
     margin-top: 1.5rem;
     margin-left: 0.8rem;
+    height: 60%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .back-btn {
     margin-top: 2rem;

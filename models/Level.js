@@ -19,6 +19,9 @@ const LevelSchema = new mongoose.Schema(
       type: [Number],
       required: [true, "Please provide result array"],
     },
+    order: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

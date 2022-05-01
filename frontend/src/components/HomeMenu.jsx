@@ -1,16 +1,30 @@
 import styled from "styled-components";
 import { Navbar, Button } from ".";
+import { useAppContext } from "../context/appContext";
 
 const HomeMenu = () => {
+  const { languageSK } = useAppContext();
   return (
     <Wrapper className="wrapper">
       <Navbar />
       <div className="select-btns">
-        <Button text="play game" path="selectGame" />
-        <Button text="custom game" path="customGame" />
-        <Button text="settings" path="settings" />
-        <Button text="about" path="about" />
-        <Button text="exit game" path="exit" />
+        <Button
+          text={`${languageSK ? "hrať hru" : "playgame"}`}
+          path="selectGame"
+        />
+        <Button
+          text={`${languageSK ? "vlastná hra" : "custom game"}`}
+          path="customGame"
+        />
+        <Button
+          text={`${languageSK ? "nastavenia" : "settings"}`}
+          path="settings"
+        />
+        <Button text={`${languageSK ? "o hre" : "about"}`} path="about" />
+        <Button
+          text={`${languageSK ? "ukončiť hru" : "exit game"}`}
+          path="exit"
+        />
       </div>
     </Wrapper>
   );

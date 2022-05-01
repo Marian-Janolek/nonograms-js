@@ -5,15 +5,15 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <Wrapper>
-      <Link to="/achievements">
+      <Link to="/achievements" title="Achievement">
         {" "}
-        <button type="button">
+        <button type="button" title="AiOutlineTrophy">
           <AiOutlineTrophy />
         </button>
       </Link>
-      <Link to="/profile">
+      <Link to="/profile" title="Profile">
         {" "}
-        <button type="button">
+        <button type="button" title="AiOutlineUser">
           <AiOutlineUser />
         </button>
       </Link>

@@ -1,33 +1,36 @@
-import React from 'react';
-import styled from 'styled-components';
-import { GiCheckMark } from 'react-icons/gi';
-import Button from './Button';
-import { useAppContext } from '../context/appContext';
+import React from "react";
+import styled from "styled-components";
+import { GiCheckMark } from "react-icons/gi";
+import Button from "./Button";
+import { useAppContext } from "../context/appContext";
 
 const Modal = () => {
-  const { isModalOpen, closeModal } = useAppContext();
-
-  console.log(isModalOpen);
+  const { isModalOpen, closeModal, languageSK } = useAppContext();
 
   return (
     <Wrapper>
       <div
         className={`${
-          isModalOpen ? 'modal-overlay show-modal' : 'modal-overlay'
+          isModalOpen ? "modal-overlay show-modal" : "modal-overlay"
         }`}
       >
         <div
           className={`${
-            isModalOpen ? 'container show-container' : 'container'
+            isModalOpen ? "container show-container" : "container"
           }`}
         >
-          <h2>Congratulation!</h2>
+          <h2>{languageSK ? "Gratulujeme!" : "Congratulation"}!</h2>
           <div className="icon-cg">
             <GiCheckMark />
           </div>
           <h3>
-            You completed this level. <br /> Press 'NEXT' to challenge yourself
-            with another one.
+            {languageSK
+              ? "Úspešne si dokončil level."
+              : "  You completed this level."}
+            <br />
+            {languageSK
+              ? "Pre výber ďalšieho levela stlač tlačidlo 'ĎALŠÍ'"
+              : 'Press "NEXT" to challenge yourself with another one.'}
           </h3>
 
           <Button text="NEXT" path="/selectGame/easy" onClick={closeModal} />

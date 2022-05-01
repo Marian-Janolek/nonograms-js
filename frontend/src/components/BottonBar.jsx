@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { bottonBarIcons } from '../utils/constants';
+import React from "react";
+import styled from "styled-components";
+import { useAppContext } from "../context/appContext";
+import { bottonBarIcons } from "../utils/constants";
 
 const BottonBar = () => {
-  const [buttonState, setButtonState] = useState('0');
+  const { setIconState } = useAppContext();
 
   const handleClick = (icon) => {
     if (!icon.state) return;
-    setButtonState(icon.state);
+    setIconState(icon.state);
   };
 
   return (

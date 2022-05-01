@@ -18,6 +18,8 @@ import {
   GET_SINGLE_LEVEL_BEGIN,
   GET_SINGLE_LEVEL_SUCCESS,
   GET_SINGLE_LEVEL_FAIL,
+  SAVE_PROGRESS,
+  LANGUAGE_TOGGLE,
 } from "../actions";
 import reducer from "../reducer/appReducer";
 import axios from "axios";
@@ -25,6 +27,8 @@ import { level_url } from "../utils/constants";
 
 const token = localStorage.getItem("token");
 const user = localStorage.getItem("user");
+const languageSK = JSON.parse(localStorage.getItem("Nonograms-L"));
+const darkMode = JSON.parse(localStorage.getItem("Nonograms-D"));
 
 const initialState = {
   user: user ? JSON.parse(user) : null,
@@ -37,6 +41,9 @@ const initialState = {
   single_level: {},
   single_level_loading: false,
   single_level_error: false,
+  isSaved: false,
+  languageSK: languageSK || false,
+  darkMode: darkMode || false,
 };
 
 const AppContext = createContext();
@@ -44,6 +51,8 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [iconState, setIconState] = useState(0);
+  const [userArray, setUserArray] = useState([]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -56,6 +65,19 @@ const AppProvider = ({ children }) => {
     fetchLevels(`${level_url}/all`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("Nonograms-D", state.darkMode);
+    localStorage.setItem("Nonograms-L", state.languageSK);
+  }, [state.darkMode, state.languageSK]);
+
+  const saveProgress = () => {
+    dispatch({ type: SAVE_PROGRESS });
+  };
+
+  const toggleLanguage = () => {
+    dispatch({ type: LANGUAGE_TOGGLE });
+  };
 
   const registerUser = async (currentUser) => {
     dispatch({ type: REGISTER_USER_BEGIN });
@@ -118,6 +140,12 @@ const AppProvider = ({ children }) => {
         openModal,
         isModalOpen,
         fetchSingleLevel,
+        iconState,
+        setIconState,
+        saveProgress,
+        userArray,
+        setUserArray,
+        toggleLanguage,
       }}
     >
       {children}

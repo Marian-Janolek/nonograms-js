@@ -10,8 +10,9 @@ import {
   HardMenu,
   ProfilePage,
   LevelPage,
-  My,
   CustomGame,
+  AboutPage,
+  SettingsPage,
 } from "./pages";
 
 function App() {
@@ -32,6 +33,8 @@ function App() {
         <Route path="/selectGame/medium/:levelId" element={<LevelPage />} />
         <Route path="/selectGame/hard" element={<HardMenu />} />
         <Route path="/selectGame/hard/:levelId" element={<LevelPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/customGame" element={<CustomGame />} />
       </Routes>
     </Router>

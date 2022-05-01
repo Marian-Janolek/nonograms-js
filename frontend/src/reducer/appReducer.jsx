@@ -11,6 +11,8 @@ import {
   GET_SINGLE_LEVEL_BEGIN,
   GET_SINGLE_LEVEL_SUCCESS,
   GET_SINGLE_LEVEL_FAIL,
+  SAVE_PROGRESS,
+  LANGUAGE_TOGGLE,
 } from "../actions";
 
 const reducer = (state, action) => {
@@ -65,6 +67,10 @@ const reducer = (state, action) => {
         single_level_loading: false,
         single_level_error: true,
       };
+    case SAVE_PROGRESS:
+      return { ...state, isSaved: true };
+    case LANGUAGE_TOGGLE:
+      return { ...state, languageSK: !state.languageSK };
 
     default:
       return state;

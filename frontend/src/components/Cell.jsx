@@ -6,10 +6,10 @@ const Cell = ({ clicked, handleClick }) => {
   return (
     <Wrapper>
       <div
-        className={`${clicked === "1" ? "black-bg" : "white-bg"}`}
+        className={`${clicked === 0 ? "black-bg" : "white-bg"}`}
         onClick={handleClick}
       >
-        {clicked === "X" && (
+        {clicked === 1 && (
           <span>
             <FaTimes />
           </span>
@@ -34,7 +34,7 @@ const Wrapper = styled.div`
     width: 95%;
   }
   span svg {
-    font-size: 5rem;
+    font-size: 2rem;
   }
 `;
 

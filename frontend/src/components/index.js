@@ -12,6 +12,8 @@ import VerticalHints from "./VerticalHints";
 import HorizontalHints from "./HorizontalHints";
 import Loading from "./Loading";
 import Preview from "./Preview";
+import About from "./About";
+import Language from "./Language";
 
 export {
   Navbar,
@@ -28,4 +30,6 @@ export {
   HorizontalHints,
   Loading,
   Preview,
+  About,
+  Language,
 };

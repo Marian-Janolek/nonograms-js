@@ -1,39 +1,58 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Cell } from ".";
 import { useAppContext } from "../context/appContext";
-import { resultArray } from "../utils/constants";
 
-const GridBoard = () => {
-  const [gameArray, setGameArray] = useState(Array(100).fill("0"));
-  const { openModal } = useAppContext();
+const savedObject = JSON.parse(localStorage.getItem("save-progress"));
 
-  const win = async (candidateArray, winArray) => {
+const GridBoard = ({ result, currentID }) => {
+  const [gameArray, setGameArray] = useState(Array(100).fill(2));
+  const { iconState, openModal, setUserArray } = useAppContext();
+
+  useEffect(() => {
+    if (savedObject === null) return;
+    if (savedObject?.id === currentID) {
+      let convertedArray = Object.keys(savedObject?.userArray).map(
+        (key) => savedObject.userArray[key]
+      );
+      setGameArray(convertedArray);
+    }
+  }, []);
+
+  const win = (candidateArray, winArray) => {
     return (
-      (await Array.isArray(candidateArray)) &&
+      Array.isArray(candidateArray) &&
       Array.isArray(winArray) &&
       candidateArray.length === winArray.length &&
       candidateArray.every((val, index) => val === winArray[index])
     );
-
-    // if (candidateArray.length !== winArray.length) return false;
-    // else {
-    //   for (const i = 0; i < candidateArray.length; i++)
-    //     if (candidateArray[i] !== winArray[i]) return false;
-    //   return true;
-    // }
   };
+
+  let helper = [];
+  const length = gameArray.length;
+  for (let i = 0; i < length; i++) {
+    if (gameArray[i] === 2) {
+      helper[i] = 1;
+    } else {
+      helper[i] = gameArray[i];
+    }
+  }
+
+  if (win(helper, result) === true) {
+    openModal();
+  }
 
   const handleClick = (i) => {
     const cells = [...gameArray];
-    // if (cells[i] === '1') {
-    //    (cells[i] = '0');
-    // }
-
-    cells[i] = "1";
-    setGameArray(cells);
-    win(gameArray, resultArray);
-    // win && openModal();
+    if (iconState === 2 || iconState === 0) {
+      cells[i] = 0;
+      setGameArray(cells);
+    }
+    if (iconState === 1) {
+      cells[i] = 1;
+      setGameArray(cells);
+    }
+    setUserArray({ ...gameArray });
   };
 
   return (

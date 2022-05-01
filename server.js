@@ -35,4 +35,4 @@ const start = async () => {
 };
 
 start();
-// importData();
+importData();

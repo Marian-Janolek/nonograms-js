@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useAppContext } from "../context/appContext";
 
 const LevelCard = ({ level, icon, levelId }) => {
+  const { closeModal } = useAppContext();
   return (
-    <Link to={`/selectGame/easy/${levelId}`}>
+    <Link to={`/selectGame/easy/${levelId}`} onClick={closeModal}>
       <Wrapper>
         <span className="icon">{icon}</span>
         <span>{level}</span>

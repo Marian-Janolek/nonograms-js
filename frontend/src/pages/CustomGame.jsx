@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import image10 from "../assets/image10.jpg";
+import image1 from "../assets/image1.jpg";
 
 const CustomGame = () => {
   const [binaryArray, setBinaryArray] = useState([]);
@@ -19,8 +19,7 @@ const CustomGame = () => {
       for (let i = 0; i < imgData.data.length; i += 4) {
         let count = imgData.data[i] + imgData.data[i + 1] + imgData.data[i + 2];
         let colour = 0;
-        if (count > 383) colour = 255;
-        // 483
+        if (count > 483) colour = 255;
         imgData.data[i] = colour;
         imgData.data[i + 1] = colour;
         imgData.data[i + 2] = colour;
@@ -47,8 +46,8 @@ const CustomGame = () => {
     convertedNewArray.push(binaryArray.slice(i, i + 10));
   }
 
-  let vertHints = Array.from(Array(10), () => new Array(5));
   let horHints = Array.from(Array(10), () => new Array(5));
+  let vertHints = Array.from(Array(10), () => new Array(5));
 
   for (let i = 0; i < convertedNewArray[0]?.length; i++) {
     let rowArray = [];
@@ -90,23 +89,24 @@ const CustomGame = () => {
     horHints[j] = colArray;
   }
   console.log(`result array: ${binaryArray}`);
-  console.log(`vertHints: ${vertHints}`);
-  console.log(`horHints: ${horHints}`);
+  console.log({ vertHints });
+  console.log({ horHints });
 
   return (
     <Wrapper>
-      <img src={image10} alt="image10" ref={imageRef} />
+      <img src={image1} alt="image1" ref={imageRef} />
       <canvas width="10" height="10" ref={canvasRef}></canvas>
-      <button type="button" onClick={() => {}}>
-        convert
-      </button>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  margin-left: 1rem;
-  margin-top: 1rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  background-color: white;
+  img {
+    margin-bottom: 2rem;
+  }
 `;
 
 export default CustomGame;
