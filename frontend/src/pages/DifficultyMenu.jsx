@@ -1,13 +1,14 @@
 import { Button, LevelCard, Navbar } from "../components";
 import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
+import { Heading } from "../components";
 
 const DifficultyMenu = ({ heading, levels, difficulty }) => {
   const { languageSK } = useAppContext();
   return (
     <Wrapper className="wrapper">
       <Navbar />
-      <div className="heading">{heading}</div>
+      <Heading heading={heading} />
       <div className="cards">
         {levels?.map((level, i) => {
           if (level.difficulty === difficulty) {

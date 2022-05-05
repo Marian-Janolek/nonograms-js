@@ -3,7 +3,7 @@ import { Navbar, Button } from ".";
 import { useAppContext } from "../context/appContext";
 
 const HomeMenu = () => {
-  const { languageSK } = useAppContext();
+  const { languageSK, logoutUser } = useAppContext();
   return (
     <Wrapper className="wrapper">
       <Navbar />
@@ -23,7 +23,8 @@ const HomeMenu = () => {
         <Button text={`${languageSK ? "o hre" : "about"}`} path="about" />
         <Button
           text={`${languageSK ? "ukončiť hru" : "exit game"}`}
-          path="exit"
+          path="/register"
+          handleClick={logoutUser}
         />
       </div>
     </Wrapper>

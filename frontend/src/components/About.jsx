@@ -3,12 +3,13 @@ import styled from "styled-components";
 import logo from "../assets/logo256.png";
 import { useAppContext } from "../context/appContext";
 import Button from "./Button";
+import Heading from "./Heading";
 
 const About = () => {
-  const { languageSK } = useAppContext();
+  const { languageSK, darkMode } = useAppContext();
   return (
-    <Wrapper className="wrapper">
-      <div className="heading">About Game</div>
+    <Wrapper className="wrapper" darkMode={darkMode}>
+      <Heading heading={`${languageSK ? "O hre" : "About Game"}`} />
       <div className="copyright">
         <img src={logo} alt="about" />
         <div className="info">
@@ -57,7 +58,8 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 2rem;
     padding: 1rem;
-    box-shadow: 5px 5px 10px #b1b1b1, -5px -5px 10px #fff;
+    box-shadow: ${(props) =>
+      props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
     border-radius: 20px;
     img {
       width: 20%;
@@ -71,7 +73,8 @@ const Wrapper = styled.div`
   .settings {
     padding: 1rem;
     margin-top: 1.5rem;
-    box-shadow: 5px 5px 10px #b1b1b1, -5px -5px 10px #fff;
+    box-shadow: ${(props) =>
+      props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
     border-radius: 20px;
     ul {
       padding-left: 1rem;

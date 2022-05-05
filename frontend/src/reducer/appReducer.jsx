@@ -13,6 +13,8 @@ import {
   GET_SINGLE_LEVEL_FAIL,
   SAVE_PROGRESS,
   LANGUAGE_TOGGLE,
+  LOGOUT_USER,
+  THEME_TOGGLE,
 } from "../actions";
 
 const reducer = (state, action) => {
@@ -39,6 +41,8 @@ const reducer = (state, action) => {
       };
     case LOGIN_USER_FAIL:
       return { ...state, isLoading: false, isError: true };
+    case LOGOUT_USER:
+      return { ...state, user: null, token: null };
     case GET_ALL_LEVELS_BEGIN:
       return { ...state, levels_loading: true, levels_error: false };
     case GET_ALL_LEVELS_SUCCESS:
@@ -71,6 +75,8 @@ const reducer = (state, action) => {
       return { ...state, isSaved: true };
     case LANGUAGE_TOGGLE:
       return { ...state, languageSK: !state.languageSK };
+    case THEME_TOGGLE:
+      return { ...state, darkMode: !state.darkMode };
 
     default:
       return state;

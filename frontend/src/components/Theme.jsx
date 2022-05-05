@@ -1,16 +1,16 @@
 import styled from "styled-components";
-import sk from "../assets/sk.svg";
-import uk from "../assets/uk.svg";
+import moon from "../assets/moon.png";
+import sun from "../assets/sun.svg";
 import { useState } from "react";
 import { useAppContext } from "../context/appContext";
 
-const Language = () => {
-  const { toggleLanguage, languageSK, darkMode } = useAppContext();
-  const [checked, setChecked] = useState(languageSK);
+const Theme = () => {
+  const { darkMode, toggleTheme, languageSK } = useAppContext();
+  const [checked, setChecked] = useState(darkMode);
 
   return (
-    <Wrapper onClick={toggleLanguage} darkMode={darkMode}>
-      <span>{languageSK ? "Výber jazyka" : "Choose language"}</span>
+    <Wrapper onClick={toggleTheme} darkMode={darkMode}>
+      <span>{languageSK ? "Výber témy" : "Choose theme"}</span>
       <div className="toggle">
         <input
           type="checkbox"
@@ -18,8 +18,8 @@ const Language = () => {
           onChange={() => setChecked(!checked)}
         />
         <label htmlFor="toggleBtn">
-          <img src={uk} alt="uk" className="icon en" />
-          <img src={sk} alt="sk" className="icon sk" />
+          <img src={sun} alt="sun" className="icon en" />
+          <img src={moon} alt="moon" className="icon sk" />
         </label>
       </div>
     </Wrapper>
@@ -77,14 +77,7 @@ const Wrapper = styled.div`
     -o-transition: all 0.4s;
     transition: all 0.4s;
   }
-  .toggle::before {
-    content: "SK ENG";
-    color: #222;
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    word-spacing: 5px;
-  }
+
   .toggle .sk {
     opacity: 0;
   }
@@ -116,4 +109,4 @@ const Wrapper = styled.div`
   }
 `;
 
-export default Language;
+export default Theme;

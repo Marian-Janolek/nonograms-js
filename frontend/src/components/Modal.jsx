@@ -33,7 +33,11 @@ const Modal = () => {
               : 'Press "NEXT" to challenge yourself with another one.'}
           </h3>
 
-          <Button text="NEXT" path="/selectGame/easy" onClick={closeModal} />
+          <Button
+            text={`${languageSK ? "ďalší" : "next"}`}
+            path="/selectGame/easy"
+            onClick={closeModal}
+          />
         </div>
       </div>
     </Wrapper>

@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
 
 const LevelCard = ({ level, icon, levelId }) => {
-  const { closeModal } = useAppContext();
+  const { closeModal, darkMode } = useAppContext();
   return (
     <Link to={`/selectGame/easy/${levelId}`} onClick={closeModal}>
-      <Wrapper>
+      <Wrapper darkMode={darkMode}>
         <span className="icon">{icon}</span>
         <span>{level}</span>
       </Wrapper>
@@ -20,9 +20,13 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 5rem;
   height: 5rem;
-  box-shadow: 5px 5px 10px #b1b1b1, -5px -5px 10px #fff;
+  box-shadow: ${(props) =>
+    props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
   border-radius: 1rem;
   position: relative;
+  color: ${(props) => (props.darkMode ? `var(--dark-text)` : `black`)};
+  background-color: ${(props) =>
+    props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
 
   span {
     font-size: 3rem;

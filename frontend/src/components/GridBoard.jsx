@@ -3,13 +3,12 @@ import styled from "styled-components";
 import { Cell } from ".";
 import { useAppContext } from "../context/appContext";
 
-const savedObject = JSON.parse(localStorage.getItem("save-progress"));
-
 const GridBoard = ({ result, currentID }) => {
   const [gameArray, setGameArray] = useState(Array(100).fill(2));
-  const { iconState, openModal, setUserArray } = useAppContext();
+  const { iconState, openModal, setUserArray, darkMode } = useAppContext();
 
   useEffect(() => {
+    const savedObject = JSON.parse(localStorage.getItem("save-progress"));
     if (savedObject === null) return;
     if (savedObject?.id === currentID) {
       let convertedArray = Object.keys(savedObject?.userArray).map(
@@ -56,7 +55,7 @@ const GridBoard = ({ result, currentID }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper darkMode={darkMode}>
       {gameArray.map((_, i) => (
         <Cell
           key={i}
@@ -71,6 +70,8 @@ const GridBoard = ({ result, currentID }) => {
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(10, 1fr);
+  background-color: ${(props) =>
+    props.darkMode ? `var(--dark-text)` : `white`};
 `;
 
 export default GridBoard;

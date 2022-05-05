@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { useAppContext } from "../context/appContext";
 
 const HorizontalHints = ({ hints }) => {
+  const { darkMode } = useAppContext();
   return (
-    <Wrapper>
+    <Wrapper darkMode={darkMode}>
       {hints?.map((hint, i) => {
         if (hint.length === 0) {
           return (
@@ -32,7 +34,7 @@ const Wrapper = styled.div`
 
   .zero-span {
     font-size: 1.2rem;
-    color: #fff;
+    color: ${(props) => (props.darkMode ? `var(--dark-text)` : `white`)};
     width: 2rem;
     text-align: center;
   }
@@ -45,7 +47,7 @@ const Wrapper = styled.div`
     width: 2rem;
     span {
       font-size: 1.2rem;
-      color: #fff;
+      color: ${(props) => (props.darkMode ? `var(--dark-text)` : `white`)};
     }
   }
 `;

@@ -20,6 +20,8 @@ import {
   GET_SINGLE_LEVEL_FAIL,
   SAVE_PROGRESS,
   LANGUAGE_TOGGLE,
+  LOGOUT_USER,
+  THEME_TOGGLE,
 } from "../actions";
 import reducer from "../reducer/appReducer";
 import axios from "axios";
@@ -79,6 +81,15 @@ const AppProvider = ({ children }) => {
     dispatch({ type: LANGUAGE_TOGGLE });
   };
 
+  const toggleTheme = () => {
+    dispatch({ type: THEME_TOGGLE });
+  };
+
+  const removeUserFromLocalStorage = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+  };
+
   const registerUser = async (currentUser) => {
     dispatch({ type: REGISTER_USER_BEGIN });
     try {
@@ -103,6 +114,11 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       dispatch({ type: LOGIN_USER_FAIL });
     }
+  };
+
+  const logoutUser = () => {
+    dispatch({ type: LOGOUT_USER });
+    removeUserFromLocalStorage();
   };
 
   const fetchLevels = async (url) => {
@@ -146,6 +162,8 @@ const AppProvider = ({ children }) => {
         userArray,
         setUserArray,
         toggleLanguage,
+        logoutUser,
+        toggleTheme,
       }}
     >
       {children}

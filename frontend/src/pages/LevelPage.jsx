@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import {
-  BottonBar,
   Button,
   GridBoard,
+  Heading,
   HorizontalHints,
   Loading,
   Preview,
@@ -13,7 +13,9 @@ import Modal from "../components/Modal";
 import { useParams } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { useAppContext } from "../context/appContext";
-import { level_url } from "../utils/constants";
+import { bottonBarIcons, level_url } from "../utils/constants";
+import Pdf from "react-to-pdf";
+import { GrDocumentPdf } from "react-icons/gr";
 
 const LevelPage = () => {
   const { levelId } = useParams();
@@ -24,8 +26,15 @@ const LevelPage = () => {
     saveProgress,
     userArray,
     languageSK,
+    darkMode,
   } = useAppContext();
   const levelRef = useRef();
+  const { setIconState } = useAppContext();
+
+  const handleClick = (icon) => {
+    if (!icon.state) return;
+    setIconState(icon.state);
+  };
 
   useEffect(() => {
     fetchSingleLevel(`${level_url}/${levelId}`);
@@ -42,12 +51,14 @@ const LevelPage = () => {
       userArray,
     };
     localStorage.setItem("save-progress", JSON.stringify(progress));
+    console.log({ progress });
   };
 
   return (
-    <Wrapper className="wrapper" ref={levelRef}>
-      <div className="heading">Level {single_level.order} </div>
-      <div className="board">
+    <Wrapper className="wrapper" darkMode={darkMode}>
+      <Heading heading={`Level ${single_level.order}`} />
+
+      <div className="board" ref={levelRef}>
         <div className="hor-flex">
           <Preview />
           <div className="hor-hints">
@@ -76,8 +87,32 @@ const LevelPage = () => {
           icon={<BsArrowLeft />}
         />
       </div>
-      <div>
-        <BottonBar />
+      <div className="btn-bar">
+        <div className="container">
+          {bottonBarIcons.map((icon) => (
+            <button
+              type="button"
+              className="icon"
+              key={icon.id}
+              onClick={() => handleClick(icon)}
+            >
+              {icon.icon}
+            </button>
+          ))}
+          <Pdf
+            targetRef={levelRef}
+            filename={`nonogram-${single_level.order}.pdf`}
+            x={50}
+            y={50}
+            scale={1.1}
+          >
+            {({ toPdf }) => (
+              <button type="button" className="icon" onClick={toPdf}>
+                <GrDocumentPdf className="pdf" />
+              </button>
+            )}
+          </Pdf>
+        </div>
       </div>
       <Modal />
     </Wrapper>
@@ -90,9 +125,12 @@ const Wrapper = styled.div`
     text-transform: uppercase;
     width: 15rem;
     height: 4rem;
-    box-shadow: 5px 5px 10px #b1b1b1, -5px -5px 10px #fff;
+    box-shadow: ${(props) =>
+      props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
     border-radius: 20px;
-    background-color: var(--main-color);
+    background-color: ${(props) =>
+      props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
+    color: ${(props) => (props.darkMode ? `var(--dark-text)` : `black`)};
     span {
       font-size: var(--bigger-font-size);
       letter-spacing: var(--spacing);
@@ -131,6 +169,42 @@ const Wrapper = styled.div`
     flex-direction: column;
     gap: 2rem;
     margin-top: 2rem;
+  }
+  .btn-bar {
+    position: fixed;
+    bottom: 5%;
+    left: 0;
+    width: 100%;
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 0.75rem;
+    }
+
+    button {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      box-shadow: ${(props) =>
+        props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
+      background-color: ${(props) =>
+        props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
+      color: ${(props) => (props.darkMode ? `var(--dark-text)` : `black`)};
+
+      &:active {
+        box-shadow: ${(props) =>
+          props.darkMode
+            ? `inset 5px 5px 10px var(--dark-text), inset -5px -5px 10px var(--dark-text)`
+            : `inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff`};
+      }
+    }
+    .icon {
+      font-size: 2.5rem;
+      svg path {
+        stroke: ${(props) => (props.darkMode ? `var(--dark-text)` : `black`)};
+      }
+    }
   }
 `;
 

@@ -1,11 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { useAppContext } from "../context/appContext";
 
-const Button = ({ text, path, icon }) => {
+const Button = ({ text, path, icon, handleClick }) => {
+  const { darkMode } = useAppContext();
   return (
     <Link to={path}>
-      <Wrapper>
+      <Wrapper onClick={handleClick} darkMode={darkMode}>
         <span className="icon">{icon}</span>
         <span>{text}</span>
       </Wrapper>
@@ -17,7 +19,10 @@ const Wrapper = styled.div`
   text-transform: uppercase;
   width: 15rem;
   height: 4rem;
-  box-shadow: 5px 5px 10px #b1b1b1, -5px -5px 10px #fff;
+  box-shadow: ${(props) =>
+    props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
+  background-color: ${(props) =>
+    props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
   border-radius: 20px;
   display: flex;
   align-items: center;

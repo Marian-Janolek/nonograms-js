@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { useAppContext } from "../context/appContext";
 
 const VerticalHints = ({ hints }) => {
+  const { darkMode } = useAppContext();
   return (
-    <Wrapper>
+    <Wrapper darkMode={darkMode}>
       {hints?.map((hint, i) => {
         if (hint.length === 0) {
           return (
@@ -32,7 +34,7 @@ const Wrapper = styled.div`
   gap: 0.09rem;
   span {
     font-size: 1.2rem;
-    color: #fff;
+    color: ${(props) => (props.darkMode ? `var(--dark-text)` : `white`)};
   }
 
   .hints {
@@ -43,7 +45,7 @@ const Wrapper = styled.div`
     gap: 0.5rem;
     span {
       font-size: 1.2rem;
-      color: #fff;
+      color: ${(props) => (props.darkMode ? `var(--dark-text)` : `white`)};
     }
   }
 `;

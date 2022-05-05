@@ -1,10 +1,12 @@
 import { AiOutlineUser, AiOutlineTrophy } from "react-icons/ai";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useAppContext } from "../context/appContext";
 
 const Navbar = () => {
+  const { darkMode } = useAppContext();
   return (
-    <Wrapper>
+    <Wrapper darkMode={darkMode}>
       <Link to="/achievements" title="Achievement">
         {" "}
         <button type="button" title="AiOutlineTrophy">
@@ -28,10 +30,14 @@ const Wrapper = styled.nav`
   flex-direction: row;
   width: 95%;
   button {
+    background-color: ${(props) =>
+      props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
+    color: ${(props) => (props.darkMode ? `var(--dark-text)` : `black`)};
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
-    box-shadow: 5px 5px 10px #b1b1b1, -5px -5px 10px #fff;
+    box-shadow: ${(props) =>
+      props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
 
     &:active {
       box-shadow: inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff;

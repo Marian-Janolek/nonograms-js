@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import image1 from "../assets/image1.jpg";
+import image0 from "../assets/image0.jpg";
 
 const CustomGame = () => {
   const [binaryArray, setBinaryArray] = useState([]);
@@ -89,12 +89,12 @@ const CustomGame = () => {
     horHints[j] = colArray;
   }
   console.log(`result array: ${binaryArray}`);
-  console.log({ vertHints });
-  console.log({ horHints });
+  console.log(JSON.stringify(vertHints) + ",");
+  console.log(JSON.stringify(horHints) + ",");
 
   return (
     <Wrapper>
-      <img src={image1} alt="image1" ref={imageRef} />
+      <img src={image0} alt="image0" ref={imageRef} />
       <canvas width="10" height="10" ref={canvasRef}></canvas>
     </Wrapper>
   );

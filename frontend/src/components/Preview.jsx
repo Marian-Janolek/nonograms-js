@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import { useAppContext } from "../context/appContext";
 
 const Preview = () => {
-  return <Wrapper></Wrapper>;
+  const { darkMode } = useAppContext();
+  return <Wrapper darkMode={darkMode}></Wrapper>;
 };
 
 const Wrapper = styled.div`
@@ -9,7 +11,8 @@ const Wrapper = styled.div`
   border: 2px solid black;
   border-bottom: none;
   border-right: none;
-  background-color: white;
+  background-color: ${(props) =>
+    props.darkMode ? `black` : "var(--main-color)"};
 `;
 
 export default Preview;
