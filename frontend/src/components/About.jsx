@@ -21,31 +21,48 @@ const About = () => {
       </div>
       <div className="about">
         <p>
-          The application is focused on the creation and solution of Nonograms,
-          which consist of white and black pixels.
+          {languageSK
+            ? "Aplikácia zameraná na vytváranie a riešenie maľovaných krížoviek, ktoré pozostávajú z bielych a čiernych pixelov."
+            : `
+            The application is focused on the creation and solution of Nonograms,
+            which consist of white and black pixels.
+            `}
         </p>
         <p>
-          In current version you can create your own crossword puzzle from image
-          saved on your device.
+          {languageSK
+            ? "V aktuálnej verzii je možné vytvoriť vlastnú maľovanú krížovku z obrázka uloženého vo vašom zariadení."
+            : `In current version you can create your own crossword puzzle from image
+          saved on your device.`}
         </p>
         <p>
-          However, If you choose not to, you can still choose from multiple
-          levels coming from our database. You can choose your own difficulty
-          level like:
+          {languageSK
+            ? "Ak nechcete použiť vlastný obrázok, aplikácia ponúka viacero vlastných levelov pochádzajúcich z databázy. Na výber je niekoľko úrovni obtiažnosti:"
+            : `  However, If you choose not to, you can still choose from multiple
+            levels coming from our database. You can choose your own difficulty
+            level like:`}
         </p>
         <ul>
-          <li>Easy</li>
-          <li>Medium</li>
-          <li>Hard</li>
+          <li>{languageSK ? "Ľahká" : "Easy"}</li>
+          <li>{languageSK ? "Stredná" : "Medium"}</li>
+          <li>{languageSK ? "Ťažká" : "Hard"}</li>
         </ul>
       </div>
       <div className="settings">
-        <p>The application contains two different themes:</p>
+        <p>
+          {languageSK
+            ? "Aplikácia obsahuje 2 rôzne témy:"
+            : "The application contains two different themes:"}
+        </p>
         <ul>
-          <li>Light theme</li>
-          <li>Dark Theme</li>
+          <li>{languageSK ? "Svetá téma" : "Light theme"}</li>
+          <li>{languageSK ? "Tmavá téma" : "Dark Theme"} </li>
         </ul>
-        <p>Which you can find in settings.</p>
+        <p>
+          {" "}
+          {languageSK
+            ? "Ktorú je možné nájsť v nastaveniach."
+            : `Which you can find in settings.`}
+        </p>
       </div>
       <Button path="/" text={`${languageSK ? "späť" : "back"}`} />
     </Wrapper>
@@ -58,8 +75,7 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 2rem;
     padding: 1rem;
-    box-shadow: ${(props) =>
-      props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
+    box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
     border-radius: 20px;
     img {
       width: 20%;
@@ -73,8 +89,7 @@ const Wrapper = styled.div`
   .settings {
     padding: 1rem;
     margin-top: 1.5rem;
-    box-shadow: ${(props) =>
-      props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
+    box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
     border-radius: 20px;
     ul {
       padding-left: 1rem;
@@ -83,6 +98,8 @@ const Wrapper = styled.div`
   }
   .settings {
     margin-bottom: 1.5rem;
+    margin-top: 0;
+    width: 100%;
   }
 `;
 

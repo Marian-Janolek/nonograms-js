@@ -5,10 +5,10 @@ import Button from "./Button";
 import { useAppContext } from "../context/appContext";
 
 const Modal = () => {
-  const { isModalOpen, closeModal, languageSK } = useAppContext();
+  const { isModalOpen, closeModal, languageSK, darkMode } = useAppContext();
 
   return (
-    <Wrapper>
+    <Wrapper darkMode={darkMode}>
       <div
         className={`${
           isModalOpen ? "modal-overlay show-modal" : "modal-overlay"
@@ -51,7 +51,8 @@ const Wrapper = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: ${(props) =>
+      props.darkMode ? "rgba(31, 31, 35, .7)" : `rgba(0, 0, 0, 0.5)`};
     display: grid;
     place-items: center;
     transition: var(--transition);
@@ -74,7 +75,8 @@ const Wrapper = styled.div`
     justify-content: center;
     flex-direction: column;
     border: 3px solid black;
-    background-color: var(--main-color);
+    background-color: ${(props) =>
+      props.darkMode ? "black" : "var(--main-color)"};
     transform: translate(0%, -100%) scale(0.1);
     visibility: hidden;
     transition: var(--transition);
@@ -91,7 +93,8 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 3px solid black;
+    border: ${(props) =>
+      props.darkMode ? "3px solid var(--dark-text)" : "3px solid black"};
     margin: 1rem 0;
     svg {
       width: 2.5rem;

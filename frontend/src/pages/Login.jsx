@@ -1,29 +1,28 @@
-import styled from 'styled-components';
-import logo from '../assets/logo.jpg';
-import { AiOutlineUser, AiOutlineLock } from 'react-icons/ai';
-import { MdAlternateEmail } from 'react-icons/md';
-import React, { useEffect, useState } from 'react';
-import { useAppContext } from '../context/appContext';
-import { useNavigate } from 'react-router-dom';
-import Loading from '../components/Loading';
+import styled from "styled-components";
+import logo from "../assets/logo.jpg";
+import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
+import { MdAlternateEmail } from "react-icons/md";
+import React, { useEffect, useState } from "react";
+import { useAppContext } from "../context/appContext";
+import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const initialState = {
-  name: '',
-  email: '',
-  password: '',
+  name: "",
+  email: "",
+  password: "",
   isMember: false,
 };
 
 const Login = () => {
   const [values, setValues] = useState(initialState);
   const navigate = useNavigate();
-  const { user, isLoading, isError, registerUser, loginUser } = useAppContext();
+  const { user, isLoading, darkMode, registerUser, loginUser } =
+    useAppContext();
 
   useEffect(() => {
     if (user) {
-      setTimeout(() => {
-        navigate('/');
-      }, 375);
+      navigate("/");
     }
   }, [user, navigate]);
 
@@ -43,7 +42,7 @@ const Login = () => {
     e.preventDefault();
     const { name, email, password, isMember } = values;
     if (!email || !password || (!name && !isMember)) {
-      console.log('error');
+      console.log("error");
       return;
     }
     const currentUserRegister = { name, email, password };
@@ -56,13 +55,13 @@ const Login = () => {
   };
 
   return (
-    <Wrapper className="wrapper">
+    <Wrapper className="wrapper" darkMode={darkMode}>
       <div className="login">
         <div className="logo">
           <img src={logo} alt="logo" />
         </div>
         <h1 className="title">nonograms</h1>
-        <h2 className="subtitle">{values.isMember ? 'Login' : 'Register'}</h2>
+        <h2 className="subtitle">{values.isMember ? "Login" : "Register"}</h2>
         <form onSubmit={onSubmit}>
           <div className="fields">
             {!values.isMember && (
@@ -98,13 +97,13 @@ const Login = () => {
               />
             </div>
             <button type="submit" className="signin-btn">
-              {values.isMember ? 'Login' : 'Register'}
+              {values.isMember ? "Login" : "Register"}
             </button>
           </div>
           <p>
-            {values.isMember ? 'Not a member yet?' : 'Alreaddy a member? '}
+            {values.isMember ? "Not a member yet?" : "Alreaddy a member? "}
             <button type="button" onClick={toggleMember}>
-              {values.isMember ? 'Register' : 'Login'}
+              {values.isMember ? "Register" : "Login"}
             </button>
           </p>
         </form>
@@ -119,16 +118,23 @@ const Wrapper = styled.div`
     height: 720px;
     padding: 60px 20px 35px 20px;
     border-radius: 40px;
-    background-color: var(--main-color);
-    box-shadow: 15px 15px 20px #cbced1, -15px -15px 20px #fff;
+    background-color: ${(props) =>
+      props.darkMode ? "var(--dark-bg)" : `var(--main-color)`};
+    box-shadow: ${(props) =>
+      props.darkMode
+        ? "none"
+        : `15px 15px 20px #cbced1, -15px -15px 20px #fff`};
   }
   .logo {
     width: 100px;
     height: 100px;
     margin: 0 auto;
     border-radius: 50%;
-    box-shadow: 0px 0px 2px #5f5f5f, 0px 0px 0px 5px #ecf0f3,
-      8px 8px 15px #a7aaaf, -8px -8px 15px #fff;
+    box-shadow: ${(props) =>
+      props.darkMode
+        ? "none"
+        : `0px 0px 2px #5f5f5f, 0px 0px 0px 5px #ecf0f3,
+      8px 8px 15px #a7aaaf, -8px -8px 15px #fff`};
     img {
       border-radius: 50%;
     }
@@ -156,7 +162,13 @@ const Wrapper = styled.div`
     .password {
       margin-bottom: 30px;
       border-radius: 25px;
-      box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+      background-color: ${(props) =>
+        props.darkMode ? "var(--dark-text)" : "none"};
+      color: ${(props) => (props.darkMode ? "var(--dark-bg)" : "none")};
+      box-shadow: ${(props) =>
+        props.darkMode
+          ? "none"
+          : `inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff`};
       display: flex;
       align-items: center;
 
@@ -170,8 +182,11 @@ const Wrapper = styled.div`
         outline: none;
         background: none;
         font-size: var(--big-font-size);
-        color: #555;
+        color: ${(props) => (props.darkMode ? "var(--dark-bg)" : "#none")};
         padding: 20px 10px 20px 5px;
+        &::placeholder {
+          color: ${(props) => (props.darkMode ? "var(--dark-bg)" : "#555")};
+        }
       }
     }
     .signin-btn {
@@ -183,15 +198,17 @@ const Wrapper = styled.div`
       border-radius: 30px;
       font-size: 20px;
       font-weight: var(--font-bold);
-      color: #fff;
+      color: ${(props) => (props.darkMode ? "var(--dark-text)" : "white")};
       text-align-last: center;
       background-color: #000;
       text-transform: capitalize;
-      box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #fff;
+      box-shadow: ${(props) =>
+        props.darkMode ? "none" : `3px 3px 8px #b1b1b1, -3px -3px 8px #fff`};
       transition: var(--transition);
       letter-spacing: var(--spacing);
       &:hover {
-        background-color: #fff;
+        background-color: ${(props) =>
+          props.darkMode ? "var(--dark-text)" : "#fff"};
         color: #000;
       }
     }
@@ -207,6 +224,8 @@ const Wrapper = styled.div`
       font-size: var(--big-font-size);
       margin-left: 0.5rem;
       letter-spacing: var(--spacing);
+      background-color: inherit;
+      color: ${(props) => (props.darkMode ? "var(--main-color)" : "black")};
     }
   }
 

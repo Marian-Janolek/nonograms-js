@@ -33,8 +33,7 @@ const Wrapper = styled.div`
   margin-bottom: 2rem;
   width: 75%;
   padding: 1rem;
-  box-shadow: ${(props) =>
-    props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
+  box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
   border-radius: 20px;
   background-color: ${(props) =>
     props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
@@ -46,12 +45,17 @@ const Wrapper = styled.div`
   .toggle {
     width: 72px;
     height: 30px;
-    border: 0.1px solid #ffffff;
+    border: ${(props) =>
+      props.darkMode ? "0.1px solid var(--dark-text)" : "0.1px solid #fff"};
     border-radius: 100px;
-    background-color: #f0edf1;
+    background-color: ${(props) =>
+      props.darkMode ? "var(--dark-text)" : "#f0edf1"};
     -webkit-box-shadow: inset 10px 10px 15px #a7aaaf,
       inset -10px -10px 15px #ffffff;
-    box-shadow: inset 10px 10px 15px #a7aaaf, inset -10px -10px 15px #ffffff;
+    box-shadow: ${(props) =>
+      props.darkMode
+        ? "inset 10px 10px 15px #a7aaaf, inset -10px -10px 15px var(--dark-text)"
+        : "inset 10px 10px 15px #a7aaaf, inset -10px -10px 15px #ffffff"};
     position: relative;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
@@ -65,10 +69,20 @@ const Wrapper = styled.div`
     width: 30px;
     height: 30px;
     border-radius: 100px;
-    -webkit-box-shadow: 0px 0px 0px 3px #f0edf1, 4px 4px 7px #a7aaaf,
-      -4px -4px 7px #ffffff;
-    box-shadow: 0px 0px 0px 3px #f0edf1, 4px 4px 7px #a7aaaf,
-      -4px -4px 7px #ffffff;
+    -webkit-box-shadow: ${(props) =>
+      props.darkMode
+        ? `0px 0px 0px 3px #f0edf199, 4px 4px 7px var(--dark-text),
+      -4px -4px 7px var(--dark-text)`
+        : `
+    0px 0px 0px 3px #f0edf1, 4px 4px 7px #a7aaaf,
+      -4px -4px 7px #ffffff`};
+    box-shadow: ${(props) =>
+      props.darkMode
+        ? `0px 0px 0px 3px #f0edf199, 4px 4px 7px var(--dark-text),
+      -4px -4px 7px var(--dark-text)`
+        : `
+    0px 0px 0px 3px #f0edf1, 4px 4px 7px #a7aaaf,
+      -4px -4px 7px #ffffff`};
     position: absolute;
     top: 0;
     left: 0;

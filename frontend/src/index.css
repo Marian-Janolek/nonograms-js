@@ -16,9 +16,10 @@
   --spacing: 0.1rem;
   --radius: 0.25rem;
   --main-color: #ecf0f3;
-  --dark-text: #787879;
-  --dark-bg: #2b2b2b;
+  --dark-text: #848494;
+  --dark-bg: #1f1f23;
   --shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --neu-shadow: 5px 5px 10px #b1b1b1, -5px -5px 10px #fff;
   --transition: all 0.4s linear;
 }
 @media screen and (min-width: 768px) {
@@ -83,7 +84,7 @@ button {
   flex-direction: column;
   width: 95vw;
   margin: 0 auto;
-  margin-top: 4rem;
+  padding-top: 4rem;
   padding-bottom: 4rem;
   height: 100vh;
 }

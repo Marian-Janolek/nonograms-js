@@ -11,6 +11,7 @@ import My from "./My";
 import CustomGame from "./CustomGame";
 import AboutPage from "./AboutPage";
 import SettingsPage from "./SettingsPage";
+import ProtectedRoute from "./ProtectedRoute";
 
 export {
   Home,
@@ -26,4 +27,5 @@ export {
   CustomGame,
   AboutPage,
   SettingsPage,
+  ProtectedRoute,
 };

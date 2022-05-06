@@ -7,12 +7,10 @@ const Navbar = () => {
   const { darkMode } = useAppContext();
   return (
     <Wrapper darkMode={darkMode}>
-      <Link to="/achievements" title="Achievement">
-        {" "}
-        <button type="button" title="AiOutlineTrophy">
-          <AiOutlineTrophy />
-        </button>
-      </Link>
+      {" "}
+      <button type="button" title="AiOutlineTrophy">
+        <AiOutlineTrophy />
+      </button>
       <Link to="/profile" title="Profile">
         {" "}
         <button type="button" title="AiOutlineUser">
@@ -36,8 +34,7 @@ const Wrapper = styled.nav`
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
-    box-shadow: ${(props) =>
-      props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
+    box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
 
     &:active {
       box-shadow: inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff;

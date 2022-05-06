@@ -19,8 +19,7 @@ const Wrapper = styled.div`
   text-transform: uppercase;
   width: 15rem;
   height: 4rem;
-  box-shadow: ${(props) =>
-    props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
+  box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
   background-color: ${(props) =>
     props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
   border-radius: 20px;

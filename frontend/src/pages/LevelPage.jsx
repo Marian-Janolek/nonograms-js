@@ -57,7 +57,6 @@ const LevelPage = () => {
   return (
     <Wrapper className="wrapper" darkMode={darkMode}>
       <Heading heading={`Level ${single_level.order}`} />
-
       <div className="board" ref={levelRef}>
         <div className="hor-flex">
           <Preview />
@@ -125,8 +124,7 @@ const Wrapper = styled.div`
     text-transform: uppercase;
     width: 15rem;
     height: 4rem;
-    box-shadow: ${(props) =>
-      props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
+    box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
     border-radius: 20px;
     background-color: ${(props) =>
       props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
@@ -186,8 +184,7 @@ const Wrapper = styled.div`
       width: 4rem;
       height: 4rem;
       border-radius: 50%;
-      box-shadow: ${(props) =>
-        props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
+      box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
       background-color: ${(props) =>
         props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
       color: ${(props) => (props.darkMode ? `var(--dark-text)` : `black`)};

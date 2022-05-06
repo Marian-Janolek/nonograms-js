@@ -1,22 +1,27 @@
-import { Button, LevelCard, Navbar } from "../components";
+import { lazy, Suspense } from "react";
+import { Button, Loading, Navbar } from "../components";
 import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
-import { Heading } from "../components";
+
+const LevelCard = lazy(() => import("../components/LevelCard"));
+const Heading = lazy(() => import("../components/Heading"));
 
 const DifficultyMenu = ({ heading, levels, difficulty }) => {
   const { languageSK } = useAppContext();
   return (
     <Wrapper className="wrapper">
       <Navbar />
-      <Heading heading={heading} />
-      <div className="cards">
-        {levels?.map((level, i) => {
-          if (level.difficulty === difficulty) {
-            return <LevelCard key={i} level={i + 1} levelId={level._id} />;
-          }
-          return null;
-        })}
-      </div>
+      <Suspense fallback={<Loading />}>
+        <Heading heading={heading} />
+        <div className="cards">
+          {levels?.map((level, i) => {
+            if (level.difficulty === difficulty) {
+              return <LevelCard key={i} level={i + 1} levelId={level._id} />;
+            }
+            return null;
+          })}
+        </div>
+      </Suspense>
       <div className="back-btn">
         <Button text={`${languageSK ? "späť" : "back"}`} path="/selectGame" />
       </div>

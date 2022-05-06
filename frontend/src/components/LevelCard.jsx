@@ -20,8 +20,7 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 5rem;
   height: 5rem;
-  box-shadow: ${(props) =>
-    props.darkMode ? `none` : `5px 5px 10px #b1b1b1, -5px -5px 10px #fff`};
+  box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
   border-radius: 1rem;
   position: relative;
   color: ${(props) => (props.darkMode ? `var(--dark-text)` : `black`)};
