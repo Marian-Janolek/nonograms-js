@@ -14,6 +14,8 @@ const LevelPage = lazy(async () => await import("./pages/LevelPage"));
 const CustomGame = lazy(() => import("./pages/CustomGame"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const SettingsPage = lazy(() => import("./pages/SettingsPage"));
+const CustomDIfficulty = lazy(() => import("./pages/CustomDIfficulty"));
+const ChoosePage = lazy(() => import("./pages/ChoosePage"));
 const ProtectedRoute = lazy(() => import("./pages/ProtectedRoute"));
 
 function App() {
@@ -135,6 +137,30 @@ function App() {
               element={
                 <ProtectedRoute>
                   <AboutPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/difficulty"
+              element={
+                <ProtectedRoute>
+                  <CustomDIfficulty />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/difficulty/medium"
+              element={
+                <ProtectedRoute>
+                  <ChoosePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/difficulty/hard"
+              element={
+                <ProtectedRoute>
+                  <ChoosePage />
                 </ProtectedRoute>
               }
             />

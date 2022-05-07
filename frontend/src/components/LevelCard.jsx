@@ -1,11 +1,18 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
 
 const LevelCard = ({ level, icon, levelId }) => {
-  const { closeModal, darkMode } = useAppContext();
+  const { closeModal, darkMode, path, setPath } = useAppContext();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setPath(pathname.split("/")[2]);
+  }, []);
+
   return (
-    <Link to={`/selectGame/easy/${levelId}`} onClick={closeModal}>
+    <Link to={`/selectGame/${path}/${levelId}`} onClick={closeModal}>
       <Wrapper darkMode={darkMode}>
         <span className="icon">{icon}</span>
         <span>{level}</span>

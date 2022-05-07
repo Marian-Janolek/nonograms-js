@@ -19,7 +19,7 @@ const CustomGame = () => {
       for (let i = 0; i < imgData.data.length; i += 4) {
         let count = imgData.data[i] + imgData.data[i + 1] + imgData.data[i + 2];
         let colour = 0;
-        if (count > 483) colour = 255;
+        if (count > 340) colour = 255;
         imgData.data[i] = colour;
         imgData.data[i + 1] = colour;
         imgData.data[i + 2] = colour;
@@ -42,12 +42,12 @@ const CustomGame = () => {
   }, []);
 
   let convertedNewArray = [];
-  for (let i = 0; i < binaryArray.length; i += 10) {
-    convertedNewArray.push(binaryArray.slice(i, i + 10));
+  for (let i = 0; i < binaryArray.length; i += 20) {
+    convertedNewArray.push(binaryArray.slice(i, i + 20));
   }
 
-  let horHints = Array.from(Array(10), () => new Array(5));
-  let vertHints = Array.from(Array(10), () => new Array(5));
+  let horHints = [];
+  let vertHints = [];
 
   for (let i = 0; i < convertedNewArray[0]?.length; i++) {
     let rowArray = [];
@@ -95,7 +95,7 @@ const CustomGame = () => {
   return (
     <Wrapper>
       <img src={image0} alt="image0" ref={imageRef} />
-      <canvas width="10" height="10" ref={canvasRef}></canvas>
+      <canvas width="20" height="20" ref={canvasRef}></canvas>
     </Wrapper>
   );
 };

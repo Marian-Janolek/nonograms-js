@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Navbar, Button } from ".";
+import { Button, Navbar } from ".";
 import { useAppContext } from "../context/appContext";
 
 const HomeMenu = () => {
@@ -7,6 +7,7 @@ const HomeMenu = () => {
   return (
     <Wrapper className="wrapper">
       <Navbar />
+
       <div className="select-btns">
         <Button
           text={`${languageSK ? "hrať hru" : "playgame"}`}
@@ -14,7 +15,7 @@ const HomeMenu = () => {
         />
         <Button
           text={`${languageSK ? "vlastná hra" : "custom game"}`}
-          path="customGame"
+          path="difficulty"
         />
         <Button
           text={`${languageSK ? "nastavenia" : "settings"}`}
@@ -23,7 +24,7 @@ const HomeMenu = () => {
         <Button text={`${languageSK ? "o hre" : "about"}`} path="about" />
         <Button
           text={`${languageSK ? "ukončiť hru" : "exit game"}`}
-          path="/register"
+          path="register"
           handleClick={logoutUser}
         />
       </div>

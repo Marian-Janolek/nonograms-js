@@ -1,10 +1,17 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
 
 const HorizontalHints = ({ hints }) => {
-  const { darkMode } = useAppContext();
+  const { darkMode, pathToNumber } = useAppContext();
+  const [size, setSize] = useState();
+
+  useEffect(() => {
+    pathToNumber(setSize);
+  }, []);
+
   return (
-    <Wrapper darkMode={darkMode}>
+    <Wrapper darkMode={darkMode} size={size}>
       {hints?.map((hint, i) => {
         if (hint.length === 0) {
           return (
@@ -33,9 +40,11 @@ const Wrapper = styled.div`
   line-height: 1.4;
 
   .zero-span {
-    font-size: 1.2rem;
+    font-size: ${(props) =>
+      props.size === 10 ? "1.2rem" : props.size === 15 ? "1rem" : ".8rem"};
     color: ${(props) => (props.darkMode ? `var(--dark-text)` : `white`)};
-    width: 2rem;
+    width: ${(props) =>
+      props.size === 10 ? "2rem" : props.size === 15 ? "1.5rem" : "1rem"};
     text-align: center;
   }
 
@@ -44,9 +53,11 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    width: 2rem;
+    width: ${(props) =>
+      props.size === 10 ? "2rem" : props.size === 15 ? "1.5rem" : "1rem"};
     span {
-      font-size: 1.2rem;
+      font-size: ${(props) =>
+        props.size === 10 ? "1.2rem" : props.size === 15 ? "1rem" : ".8rem"};
       color: ${(props) => (props.darkMode ? `var(--dark-text)` : `white`)};
     }
   }

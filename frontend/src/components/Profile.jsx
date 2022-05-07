@@ -1,49 +1,55 @@
+import { lazy, Suspense } from "react";
 import styled from "styled-components";
 import admin from "../assets/admin.jpg";
 import profile from "../assets/user.svg";
-import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
-import { MdAlternateEmail } from "react-icons/md";
 import { useAppContext } from "../context/appContext";
 import Button from "./Button";
+import Loading from "./Loading";
+
+const MdAlternateEmail = lazy(() => import("../utils/icons/mail"));
+const AiOutlineUser = lazy(() => import("../utils/icons/user"));
+const AiOutlineLock = lazy(() => import("../utils/icons/lock"));
 
 const Profile = () => {
   const { languageSK, darkMode, user } = useAppContext();
 
   return (
     <Wrapper className="wrapper" darkMode={darkMode}>
-      <div className="profile">
-        <div className="user">
-          <img src={`${user.isAdmin ? admin : profile}`} alt="user" />
-        </div>
-        <h2 className="text">
-          {user.isAdmin ? "admin" : languageSK ? "užívateľ" : "member"}
-        </h2>
-        <h3>
-          {languageSK
-            ? "Zmena prihlasovacích údajov:"
-            : "Change your credentails:"}{" "}
-        </h3>
-        <form>
-          <div className="fields">
-            <div className="username">
-              <AiOutlineUser />
-              <input type="text" placeholder="Username" />
-            </div>
-            <div className="email">
-              <MdAlternateEmail />
-              <input type="email" placeholder="Enter email" />
-            </div>
-            <div className="password">
-              <AiOutlineLock />
-              <input type="password" placeholder="Password" />
-            </div>
-            <div className="confirmPassword">
-              <AiOutlineLock />
-              <input type="password" placeholder="Confirm password" />
-            </div>
+      <Suspense fallback={<Loading />}>
+        <div className="profile">
+          <div className="user">
+            <img src={`${user.isAdmin ? admin : profile}`} alt="user" />
           </div>
-        </form>
-      </div>
+          <h2 className="text">
+            {user.isAdmin ? "admin" : languageSK ? "užívateľ" : "member"}
+          </h2>
+          <h3>
+            {languageSK
+              ? "Zmena prihlasovacích údajov:"
+              : "Change your credentails:"}{" "}
+          </h3>
+          <form>
+            <div className="fields">
+              <div className="username">
+                <AiOutlineUser />
+                <input type="text" placeholder="Username" />
+              </div>
+              <div className="email">
+                <MdAlternateEmail />
+                <input type="email" placeholder="Enter email" />
+              </div>
+              <div className="password">
+                <AiOutlineLock />
+                <input type="password" placeholder="Password" />
+              </div>
+              <div className="confirmPassword">
+                <AiOutlineLock />
+                <input type="password" placeholder="Confirm password" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </Suspense>
       <Button text={`${languageSK ? "späť" : "back"}`} path="/" />
     </Wrapper>
   );

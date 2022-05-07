@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { Cell } from ".";
 import { useAppContext } from "../context/appContext";
 
 const GridBoard = ({ result, currentID }) => {
-  const [gameArray, setGameArray] = useState(Array(100).fill(2));
-  const { iconState, openModal, setUserArray, darkMode } = useAppContext();
+  const {
+    iconState,
+    openModal,
+    setUserArray,
+    darkMode,
+    setPath,
+    pathToNumber,
+  } = useAppContext();
+  const [size, setSize] = useState();
+  const [gameArray, setGameArray] = useState();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const savedObject = JSON.parse(localStorage.getItem("save-progress"));
@@ -16,19 +26,28 @@ const GridBoard = ({ result, currentID }) => {
       );
       setGameArray(convertedArray);
     }
-  }, []);
+    setPath(pathname.split("/")[2]);
+    pathToNumber(setSize);
+    if (size === 10) {
+      setGameArray(Array(100).fill(2));
+    } else if (size === 15) {
+      setGameArray(Array(225).fill(2));
+    } else if (size === 20) {
+      setGameArray(Array(400).fill(2));
+    }
+  }, [size]);
 
   const win = (candidateArray, winArray) => {
     return (
       Array.isArray(candidateArray) &&
       Array.isArray(winArray) &&
-      candidateArray.length === winArray.length &&
+      candidateArray?.length === winArray.length &&
       candidateArray.every((val, index) => val === winArray[index])
     );
   };
 
   let helper = [];
-  const length = gameArray.length;
+  const length = gameArray?.length;
   for (let i = 0; i < length; i++) {
     if (gameArray[i] === 2) {
       helper[i] = 1;
@@ -55,8 +74,8 @@ const GridBoard = ({ result, currentID }) => {
   };
 
   return (
-    <Wrapper darkMode={darkMode}>
-      {gameArray.map((_, i) => (
+    <Wrapper darkMode={darkMode} size={size}>
+      {gameArray?.map((_, i) => (
         <Cell
           key={i}
           clicked={gameArray[i]}
@@ -69,7 +88,12 @@ const GridBoard = ({ result, currentID }) => {
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: ${(props) =>
+    props.size === 10
+      ? `repeat(${props.size}, 1fr)`
+      : props.size === 15
+      ? `repeat(${props.size}, 1fr)`
+      : `repeat(${props.size}, 1fr)`};
   background-color: ${(props) =>
     props.darkMode ? `var(--dark-text)` : `white`};
 `;

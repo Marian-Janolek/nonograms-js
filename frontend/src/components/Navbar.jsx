@@ -1,13 +1,12 @@
-import { AiOutlineUser, AiOutlineTrophy } from "react-icons/ai";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../context/appContext";
+import { AiOutlineUser, AiOutlineTrophy } from "react-icons/ai";
 
 const Navbar = () => {
   const { darkMode } = useAppContext();
   return (
     <Wrapper darkMode={darkMode}>
-      {" "}
       <button type="button" title="AiOutlineTrophy">
         <AiOutlineTrophy />
       </button>
@@ -22,10 +21,15 @@ const Navbar = () => {
 };
 
 const Wrapper = styled.nav`
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
-  flex-direction: row;
   width: 95%;
   button {
     background-color: ${(props) =>
@@ -37,7 +41,10 @@ const Wrapper = styled.nav`
     box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
 
     &:active {
-      box-shadow: inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff;
+      box-shadow: ${(props) =>
+        props.darkMode
+          ? `inset 3px 3px 5px var(--dark-text), inset -3px -3px 5px var(--dark-text)`
+          : `inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff`};
     }
 
     svg {

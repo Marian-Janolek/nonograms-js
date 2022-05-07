@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import styled from "styled-components";
 import {
   Button,
@@ -8,14 +9,24 @@ import {
   Preview,
   VerticalHints,
 } from "../components";
-import { BsArrowLeft } from "react-icons/bs";
 import Modal from "../components/Modal";
 import { useParams } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { useAppContext } from "../context/appContext";
-import { bottonBarIcons, level_url } from "../utils/constants";
+import { level_url } from "../utils/constants";
 import Pdf from "react-to-pdf";
-import { GrDocumentPdf } from "react-icons/gr";
+
+const BsArrowLeft = lazy(() => import("../utils/icons/arrowLeft"));
+const FaPencilAlt = lazy(() => import("../utils/icons/pencil"));
+const FaTimes = lazy(() => import("../utils/icons/times"));
+const FaRegLightbulb = lazy(() => import("../utils/icons/hint"));
+const GrDocumentPdf = lazy(() => import("../utils/icons/pdf"));
+
+const bottonBarIcons = [
+  { id: 1, icon: <FaPencilAlt />, state: 2, title: "pencil" },
+  { id: 2, icon: <FaTimes />, state: 1, title: "times" },
+  { id: 3, icon: <FaRegLightbulb />, title: "hint" },
+];
 
 const LevelPage = () => {
   const { levelId } = useParams();
@@ -27,6 +38,7 @@ const LevelPage = () => {
     userArray,
     languageSK,
     darkMode,
+    path,
   } = useAppContext();
   const levelRef = useRef();
   const { setIconState } = useAppContext();
@@ -51,7 +63,6 @@ const LevelPage = () => {
       userArray,
     };
     localStorage.setItem("save-progress", JSON.stringify(progress));
-    console.log({ progress });
   };
 
   return (
@@ -80,39 +91,49 @@ const LevelPage = () => {
         <button className="save" onClick={handleSave}>
           <span> {languageSK ? "uložiť" : "save"} </span>
         </button>
-        <Button
-          text={`${languageSK ? "späť" : "back"}`}
-          path="/selectGame/easy"
-          icon={<BsArrowLeft />}
-        />
+        <Suspense fallback={<Loading />}>
+          <Button
+            text={`${languageSK ? "späť" : "back"}`}
+            path={`/selectGame/${path}`}
+            icon={<BsArrowLeft />}
+          />
+        </Suspense>
       </div>
-      <div className="btn-bar">
-        <div className="container">
-          {bottonBarIcons.map((icon) => (
-            <button
-              type="button"
-              className="icon"
-              key={icon.id}
-              onClick={() => handleClick(icon)}
-            >
-              {icon.icon}
-            </button>
-          ))}
-          <Pdf
-            targetRef={levelRef}
-            filename={`nonogram-${single_level.order}.pdf`}
-            x={50}
-            y={50}
-            scale={1.1}
-          >
-            {({ toPdf }) => (
-              <button type="button" className="icon" onClick={toPdf}>
-                <GrDocumentPdf className="pdf" />
+      <Suspense fallback={<Loading />}>
+        <div className="btn-bar">
+          <div className="container">
+            {bottonBarIcons?.map((icon) => (
+              <button
+                type="button"
+                title={icon.title}
+                className="icon"
+                key={icon.id}
+                onClick={() => handleClick(icon)}
+              >
+                {icon.icon}
               </button>
-            )}
-          </Pdf>
+            ))}
+            <Pdf
+              targetRef={levelRef}
+              filename={`nonogram-${single_level.order}.pdf`}
+              x={50}
+              y={50}
+              scale={1.1}
+            >
+              {({ toPdf }) => (
+                <button
+                  type="button"
+                  className="icon"
+                  title="pdf"
+                  onClick={toPdf}
+                >
+                  <GrDocumentPdf className="pdf" />
+                </button>
+              )}
+            </Pdf>
+          </div>
         </div>
-      </div>
+      </Suspense>
       <Modal />
     </Wrapper>
   );
@@ -192,7 +213,7 @@ const Wrapper = styled.div`
       &:active {
         box-shadow: ${(props) =>
           props.darkMode
-            ? `inset 5px 5px 10px var(--dark-text), inset -5px -5px 10px var(--dark-text)`
+            ? `inset 3px 3px 5px var(--dark-text), inset -3px -3px 5px var(--dark-text)`
             : `inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff`};
       }
     }

@@ -10,13 +10,15 @@ const DifficultyMenu = ({ heading, levels, difficulty }) => {
   const { languageSK } = useAppContext();
   return (
     <Wrapper className="wrapper">
-      <Navbar />
       <Suspense fallback={<Loading />}>
+        <Navbar />
         <Heading heading={heading} />
         <div className="cards">
           {levels?.map((level, i) => {
             if (level.difficulty === difficulty) {
-              return <LevelCard key={i} level={i + 1} levelId={level._id} />;
+              return (
+                <LevelCard key={i} level={level.order} levelId={level._id} />
+              );
             }
             return null;
           })}

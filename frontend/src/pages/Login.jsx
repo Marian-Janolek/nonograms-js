@@ -1,11 +1,14 @@
+import { lazy, Suspense } from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.jpg";
-import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
-import { MdAlternateEmail } from "react-icons/md";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppContext } from "../context/appContext";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
+
+const MdAlternateEmail = lazy(() => import("../utils/icons/mail"));
+const AiOutlineUser = lazy(() => import("../utils/icons/user"));
+const AiOutlineLock = lazy(() => import("../utils/icons/lock"));
 
 const initialState = {
   name: "",
@@ -56,58 +59,60 @@ const Login = () => {
 
   return (
     <Wrapper className="wrapper" darkMode={darkMode}>
-      <div className="login">
-        <div className="logo">
-          <img src={logo} alt="logo" />
-        </div>
-        <h1 className="title">nonograms</h1>
-        <h2 className="subtitle">{values.isMember ? "Login" : "Register"}</h2>
-        <form onSubmit={onSubmit}>
-          <div className="fields">
-            {!values.isMember && (
-              <div className="username">
-                <AiOutlineUser />
+      <Suspense fallback={<Loading />}>
+        <div className="login">
+          <div className="logo">
+            <img src={logo} alt="logo" />
+          </div>
+          <h1 className="title">nonograms</h1>
+          <h2 className="subtitle">{values.isMember ? "Login" : "Register"}</h2>
+          <form onSubmit={onSubmit}>
+            <div className="fields">
+              {!values.isMember && (
+                <div className="username">
+                  <AiOutlineUser />
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    name="name"
+                    value={values.name}
+                    onChange={handleChange}
+                  />
+                </div>
+              )}
+              <div className="email">
+                <MdAlternateEmail />
                 <input
-                  type="text"
-                  placeholder="Username"
-                  name="name"
-                  value={values.name}
+                  type="email"
+                  placeholder="Enter email"
+                  name="email"
+                  value={values.email}
                   onChange={handleChange}
                 />
               </div>
-            )}
-            <div className="email">
-              <MdAlternateEmail />
-              <input
-                type="email"
-                placeholder="Enter email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-              />
+              <div className="password">
+                <AiOutlineLock />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={values.password}
+                  onChange={handleChange}
+                />
+              </div>
+              <button type="submit" className="signin-btn">
+                {values.isMember ? "Login" : "Register"}
+              </button>
             </div>
-            <div className="password">
-              <AiOutlineLock />
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={values.password}
-                onChange={handleChange}
-              />
-            </div>
-            <button type="submit" className="signin-btn">
-              {values.isMember ? "Login" : "Register"}
-            </button>
-          </div>
-          <p>
-            {values.isMember ? "Not a member yet?" : "Alreaddy a member? "}
-            <button type="button" onClick={toggleMember}>
-              {values.isMember ? "Register" : "Login"}
-            </button>
-          </p>
-        </form>
-      </div>
+            <p>
+              {values.isMember ? "Not a member yet?" : "Alreaddy a member? "}
+              <button type="button" onClick={toggleMember}>
+                {values.isMember ? "Register" : "Login"}
+              </button>
+            </p>
+          </form>
+        </div>
+      </Suspense>
     </Wrapper>
   );
 };

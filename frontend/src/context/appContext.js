@@ -55,12 +55,22 @@ const AppProvider = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [iconState, setIconState] = useState(0);
   const [userArray, setUserArray] = useState([]);
+  const [path, setPath] = useState();
 
   const openModal = () => {
     setIsModalOpen(true);
   };
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+  const pathToNumber = (setSize) => {
+    if (path === "easy") {
+      setSize(10);
+    } else if (path === "medium") {
+      setSize(15);
+    } else if (path === "hard") {
+      setSize(20);
+    }
   };
 
   useEffect(() => {
@@ -164,6 +174,9 @@ const AppProvider = ({ children }) => {
         toggleLanguage,
         logoutUser,
         toggleTheme,
+        path,
+        setPath,
+        pathToNumber,
       }}
     >
       {children}

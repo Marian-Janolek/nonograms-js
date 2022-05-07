@@ -1,14 +1,22 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
 
 const VerticalHints = ({ hints }) => {
-  const { darkMode } = useAppContext();
+  const { darkMode, pathToNumber } = useAppContext();
+
+  const [size, setSize] = useState();
+
+  useEffect(() => {
+    pathToNumber(setSize);
+  }, []);
+
   return (
-    <Wrapper darkMode={darkMode}>
+    <Wrapper darkMode={darkMode} size={size}>
       {hints?.map((hint, i) => {
         if (hint.length === 0) {
           return (
-            <span key={i} style={{ textAlign: "right" }}>
+            <span key={i} className="zero-span">
               0
             </span>
           );
@@ -31,10 +39,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   padding-left: 0.4rem;
   padding-right: 0.5rem;
-  gap: 0.09rem;
-  span {
-    font-size: 1.2rem;
+  .zero-span {
+    font-size: ${(props) =>
+      props.size === 10 ? "1.2rem" : props.size === 15 ? "1rem" : ".8rem"};
     color: ${(props) => (props.darkMode ? `var(--dark-text)` : `white`)};
+    text-align: right;
   }
 
   .hints {
@@ -43,8 +52,11 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: flex-end;
     gap: 0.5rem;
+    height: ${(props) =>
+      props.size === 10 ? "2rem" : props.size === 15 ? "1.5rem" : "1rem"};
     span {
-      font-size: 1.2rem;
+      font-size: ${(props) =>
+        props.size === 10 ? "1.2rem" : props.size === 15 ? "1rem" : ".8rem"};
       color: ${(props) => (props.darkMode ? `var(--dark-text)` : `white`)};
     }
   }

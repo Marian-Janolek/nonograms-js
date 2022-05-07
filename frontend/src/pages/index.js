@@ -12,6 +12,7 @@ import CustomGame from "./CustomGame";
 import AboutPage from "./AboutPage";
 import SettingsPage from "./SettingsPage";
 import ProtectedRoute from "./ProtectedRoute";
+import ChoosePage from "./ChoosePage";
 
 export {
   Home,
@@ -28,4 +29,5 @@ export {
   AboutPage,
   SettingsPage,
   ProtectedRoute,
+  ChoosePage,
 };
