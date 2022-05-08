@@ -19,7 +19,12 @@ const CustomDIfficulty = () => {
 
 const Wrapper = styled.div`
   .select-btns {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     gap: 3rem;
     padding-bottom: 4rem;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
@@ -9,6 +9,7 @@ const LevelCard = ({ level, icon, levelId }) => {
 
   useEffect(() => {
     setPath(pathname.split("/")[2]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -22,12 +23,20 @@ const LevelCard = ({ level, icon, levelId }) => {
 };
 
 const Wrapper = styled.div`
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   width: 4.5rem;
   height: 4.5rem;
   box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
+  -webkit-box-shadow: ${(props) =>
+    props.darkMode ? `none` : `var(--neu-shadow)`};
   border-radius: 1rem;
   position: relative;
   color: ${(props) => (props.darkMode ? `var(--dark-text)` : `black`)};

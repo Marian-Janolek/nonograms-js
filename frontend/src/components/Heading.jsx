@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   font-weight: var(--font-bold);
   background: ${(props) => (props.darkMode ? `var(--dark-text)` : ` #b1b1b1`)};
   -webkit-background-clip: text;
+  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   text-transform: capitalize;

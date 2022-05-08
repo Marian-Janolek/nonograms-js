@@ -27,14 +27,22 @@ const Language = () => {
 };
 
 const Wrapper = styled.div`
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   margin-bottom: 2rem;
   padding: 1rem;
   width: 20%;
   margin-top: 1rem;
   box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
+  -webkit-box-shadow: ${(props) =>
+    props.darkMode ? `none` : `var(--neu-shadow)`};
   border-radius: 20px;
   background-color: ${(props) =>
     props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
@@ -54,6 +62,10 @@ const Wrapper = styled.div`
     -webkit-box-shadow: inset 10px 10px 15px #a7aaaf,
       inset -10px -10px 15px #ffffff;
     box-shadow: ${(props) =>
+      props.darkMode
+        ? "inset 10px 10px 15px #a7aaaf, inset -10px -10px 15px var(--dark-text)"
+        : "inset 10px 10px 15px #a7aaaf, inset -10px -10px 15px #ffffff"};
+    -webkit-box-shadow: ${(props) =>
       props.darkMode
         ? "inset 10px 10px 15px #a7aaaf, inset -10px -10px 15px var(--dark-text)"
         : "inset 10px 10px 15px #a7aaaf, inset -10px -10px 15px #ffffff"};

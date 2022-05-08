@@ -39,9 +39,15 @@ const Wrapper = styled.nav`
     height: 4rem;
     border-radius: 50%;
     box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
+    -webkit-box-shadow: ${(props) =>
+      props.darkMode ? `none` : `var(--neu-shadow)`};
 
     &:active {
       box-shadow: ${(props) =>
+        props.darkMode
+          ? `inset 3px 3px 5px var(--dark-text), inset -3px -3px 5px var(--dark-text)`
+          : `inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff`};
+      -webkit-box-shadow: ${(props) =>
         props.darkMode
           ? `inset 3px 3px 5px var(--dark-text), inset -3px -3px 5px var(--dark-text)`
           : `inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff`};

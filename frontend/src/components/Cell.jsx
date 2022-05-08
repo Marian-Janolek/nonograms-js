@@ -14,6 +14,7 @@ const Cell = ({ clicked, handleClick }) => {
   useEffect(() => {
     setPath(pathname.split("/")[2]);
     pathToNumber(setSize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -50,8 +51,14 @@ const Wrapper = styled.div`
     width: 95%;
   }
   span {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 
     svg {

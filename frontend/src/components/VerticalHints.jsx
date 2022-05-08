@@ -9,6 +9,7 @@ const VerticalHints = ({ hints }) => {
 
   useEffect(() => {
     pathToNumber(setSize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path]);
 
   return (
@@ -34,8 +35,13 @@ const VerticalHints = ({ hints }) => {
 };
 
 const Wrapper = styled.div`
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   padding-left: ${(props) =>
     props.size === 10 ? ".4rem" : props.size === 15 ? ".2rem" : ".15rem"};
@@ -51,9 +57,18 @@ const Wrapper = styled.div`
   }
 
   .hints {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
     justify-content: flex-end;
     gap: ${(props) =>
       props.size === 10 ? ".5rem" : props.size === 15 ? ".25rem" : ".3rem"};

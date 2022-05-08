@@ -53,8 +53,11 @@ const Wrapper = styled.div`
     height: 100%;
     background: ${(props) =>
       props.darkMode ? "rgba(31, 31, 35, .7)" : `rgba(0, 0, 0, 0.5)`};
+    display: -ms-grid;
     display: grid;
     place-items: center;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
     transition: var(--transition);
     visibility: hidden;
     z-index: -1;
@@ -69,28 +72,49 @@ const Wrapper = styled.div`
     position: absolute;
     border-radius: 1rem;
     padding: 2rem 1.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: 90%;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     border: 3px solid black;
     background-color: ${(props) =>
       props.darkMode ? "black" : "var(--main-color)"};
+    -webkit-transform: translate(0%, -100%) scale(0.1);
+    -ms-transform: translate(0%, -100%) scale(0.1);
     transform: translate(0%, -100%) scale(0.1);
     visibility: hidden;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
     transition: var(--transition);
   }
   .show-container {
     visibility: visible;
+    -webkit-transform: translate(0%, 0%) scale(1);
+    -ms-transform: translate(0%, 0%) scale(1);
     transform: translate(0%, 0%) scale(1);
   }
 
   .icon-cg {
     width: 4rem;
     height: 4rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     border-radius: 50%;
     border: ${(props) =>

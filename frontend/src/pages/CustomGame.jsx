@@ -125,6 +125,9 @@ const Wrapper = styled.div`
     }
     &:active {
       box-shadow: inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff;
+      -webkit-box-shadow: inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff;
+      -webkit-transform: scale(0.98);
+      -ms-transform: scale(0.98);
       transform: scale(0.98);
     }
     @media (min-width: 450px) {
@@ -135,6 +138,8 @@ const Wrapper = styled.div`
 
   .board {
     .hor-flex {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
       .hor-hints {
         background-color: black;
@@ -142,6 +147,8 @@ const Wrapper = styled.div`
       }
     }
     .game {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
 
       .ver-hints {
@@ -151,7 +158,12 @@ const Wrapper = styled.div`
     }
   }
   .flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     gap: 2rem;
     margin-top: 2rem;
@@ -162,8 +174,14 @@ const Wrapper = styled.div`
     left: 0;
     width: 100%;
     .container {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
+      -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
       justify-content: space-evenly;
       gap: 0.75rem;
     }
@@ -173,12 +191,18 @@ const Wrapper = styled.div`
       height: 4rem;
       border-radius: 50%;
       box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
+      -webkit-box-shadow: ${(props) =>
+        props.darkMode ? `none` : `var(--neu-shadow)`};
       background-color: ${(props) =>
         props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
       color: ${(props) => (props.darkMode ? `var(--dark-text)` : `black`)};
 
       &:active {
         box-shadow: ${(props) =>
+          props.darkMode
+            ? `inset 3px 3px 5px var(--dark-text), inset -3px -3px 5px var(--dark-text)`
+            : `inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff`};
+        -webkit-box-shadow: ${(props) =>
           props.darkMode
             ? `inset 3px 3px 5px var(--dark-text), inset -3px -3px 5px var(--dark-text)`
             : `inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff`};

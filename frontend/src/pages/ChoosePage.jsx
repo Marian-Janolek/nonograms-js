@@ -52,6 +52,7 @@ const ChoosePage = () => {
       }
       setBinaryArray(helper);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let convertedNewArray = [];
@@ -201,6 +202,8 @@ const Wrapper = styled.div`
     label {
       padding: 0.7rem 2rem;
       box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
+      -webkit-box-shadow: ${(props) =>
+        props.darkMode ? `none` : `var(--neu-shadow)`};
       background-color: ${(props) =>
         props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
       border-radius: 15px;
@@ -217,13 +220,22 @@ const Wrapper = styled.div`
           props.darkMode
             ? `inset 3px 3px 5px var(--dark-text), inset -3px -3px 5px var(--dark-text)`
             : `inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff`};
+        -webkit-box-shadow: ${(props) =>
+          props.darkMode
+            ? `inset 3px 3px 5px var(--dark-text), inset -3px -3px 5px var(--dark-text)`
+            : `inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff`};
       }
     }
   }
 
   .select-btns {
     margin-top: 3rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     gap: 3rem;
     padding-bottom: 4rem;

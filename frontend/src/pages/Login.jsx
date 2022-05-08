@@ -128,6 +128,10 @@ const Wrapper = styled.div`
       props.darkMode
         ? "none"
         : `15px 15px 20px #cbced1, -15px -15px 20px #fff`};
+    -webkit-box-shadow: ${(props) =>
+      props.darkMode
+        ? "none"
+        : `15px 15px 20px #cbced1, -15px -15px 20px #fff`};
   }
   .logo {
     width: 100px;
@@ -135,6 +139,11 @@ const Wrapper = styled.div`
     margin: 0 auto;
     border-radius: 50%;
     box-shadow: ${(props) =>
+      props.darkMode
+        ? "none"
+        : `0px 0px 2px #5f5f5f, 0px 0px 0px 5px #ecf0f3,
+      8px 8px 15px #a7aaaf, -8px -8px 15px #fff`};
+    -webkit-box-shadow: ${(props) =>
       props.darkMode
         ? "none"
         : `0px 0px 2px #5f5f5f, 0px 0px 0px 5px #ecf0f3,
@@ -172,7 +181,15 @@ const Wrapper = styled.div`
         props.darkMode
           ? "none"
           : `inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff`};
+      -webkit-box-shadow: ${(props) =>
+        props.darkMode
+          ? "none"
+          : `inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff`};
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
 
       svg {
@@ -206,6 +223,8 @@ const Wrapper = styled.div`
       background-color: #000;
       text-transform: capitalize;
       box-shadow: ${(props) =>
+        props.darkMode ? "none" : `3px 3px 8px #b1b1b1, -3px -3px 8px #fff`};
+      -webkit-box-shadow: ${(props) =>
         props.darkMode ? "none" : `3px 3px 8px #b1b1b1, -3px -3px 8px #fff`};
       transition: var(--transition);
       letter-spacing: var(--spacing);

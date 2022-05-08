@@ -70,6 +70,11 @@ const Wrapper = styled.div`
         ? "none"
         : ` 0px 0px 2px #5f5f5f, 0px 0px 0px 5px #ecf0f3,
       8px 8px 15px #a7aaaf, -8px -8px 15px #fff`};
+    -webkit-box-shadow: ${(props) =>
+      props.darkMode
+        ? "none"
+        : ` 0px 0px 2px #5f5f5f, 0px 0px 0px 5px #ecf0f3,
+      8px 8px 15px #a7aaaf, -8px -8px 15px #fff`};
     img {
       width: 100%;
       height: 100%;
@@ -104,7 +109,15 @@ const Wrapper = styled.div`
         props.darkMode
           ? "none"
           : `inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff`};
+      -webkit-box-shadow: ${(props) =>
+        props.darkMode
+          ? "none"
+          : `inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff`};
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
 
       svg {

@@ -8,6 +8,7 @@ const HorizontalHints = ({ hints }) => {
 
   useEffect(() => {
     pathToNumber(setSize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path]);
 
   return (

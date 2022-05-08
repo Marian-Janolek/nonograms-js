@@ -49,6 +49,7 @@ const LevelPage = () => {
 
   useEffect(() => {
     fetchSingleLevel(`${level_url}/${levelId}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [levelId]);
 
   if (single_level_loading) {
@@ -142,6 +143,8 @@ const Wrapper = styled.div`
     width: 15rem;
     height: 4rem;
     box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
+    -webkit-box-shadow: ${(props) =>
+      props.darkMode ? `none` : `var(--neu-shadow)`};
     border-radius: 20px;
     background-color: ${(props) =>
       props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
@@ -153,7 +156,10 @@ const Wrapper = styled.div`
       opacity: 0.75;
     }
     &:active {
+      -webkit-box-shadow: inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff;
       box-shadow: inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff;
+      -webkit-transform: scale(0.98);
+      -ms-transform: scale(0.98);
       transform: scale(0.98);
     }
     @media (min-width: 450px) {
@@ -164,6 +170,8 @@ const Wrapper = styled.div`
 
   .board {
     .hor-flex {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
       .hor-hints {
         background-color: black;
@@ -171,6 +179,8 @@ const Wrapper = styled.div`
       }
     }
     .game {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
 
       .ver-hints {
@@ -180,7 +190,12 @@ const Wrapper = styled.div`
     }
   }
   .flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     gap: 2rem;
     margin-top: 2rem;
@@ -190,9 +205,16 @@ const Wrapper = styled.div`
     bottom: 5%;
     left: 0;
     width: 100%;
+
     .container {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
+      -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
       justify-content: space-evenly;
       gap: 0.75rem;
     }
@@ -202,12 +224,18 @@ const Wrapper = styled.div`
       height: 4rem;
       border-radius: 50%;
       box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
+      -webkit-box-shadow: ${(props) =>
+        props.darkMode ? `none` : `var(--neu-shadow)`};
       background-color: ${(props) =>
         props.darkMode ? `var(--dark-bg)` : `var(--main-color)`};
       color: ${(props) => (props.darkMode ? `var(--dark-text)` : `black`)};
 
       &:active {
         box-shadow: ${(props) =>
+          props.darkMode
+            ? `inset 3px 3px 5px var(--dark-text), inset -3px -3px 5px var(--dark-text)`
+            : `inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff`};
+        -webkit-box-shadow: ${(props) =>
           props.darkMode
             ? `inset 3px 3px 5px var(--dark-text), inset -3px -3px 5px var(--dark-text)`
             : `inset 5px 5px 10px #b1b1b1, inset -5px -5px 10px #fff`};
@@ -220,12 +248,28 @@ const Wrapper = styled.div`
       }
     }
   }
+  @media (min-width: 1024px) {
+    .btn-bar {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      .container {
+        width: 60%;
+      }
+    }
+  }
   @media (min-width: 676px) {
     .btn-bar {
       bottom: 3%;
     }
     .flex {
       margin-top: 1.5rem;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
       flex-direction: row;
     }
   }

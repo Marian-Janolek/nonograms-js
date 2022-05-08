@@ -36,6 +36,7 @@ const GridBoard = ({ result, currentID }) => {
     } else if (size === 20) {
       setGameArray(Array(400).fill(2));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [size, path]);
 
   const win = (candidateArray, winArray) => {
@@ -88,6 +89,7 @@ const GridBoard = ({ result, currentID }) => {
 };
 
 const Wrapper = styled.div`
+  display: -ms-grid;
   display: grid;
   grid-template-columns: ${(props) =>
     props.size === 10

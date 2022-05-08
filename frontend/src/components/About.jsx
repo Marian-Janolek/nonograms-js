@@ -71,11 +71,17 @@ const About = () => {
 
 const Wrapper = styled.div`
   .copyright {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     gap: 2rem;
     padding: 1rem;
     box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
+    -webkit-box-shadow: ${(props) =>
+      props.darkMode ? `none` : `var(--neu-shadow)`};
     border-radius: 20px;
 
     img {
@@ -91,6 +97,8 @@ const Wrapper = styled.div`
     padding: 1rem;
     margin-top: 1.5rem;
     box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
+    -webkit-box-shadow: ${(props) =>
+      props.darkMode ? `none` : `var(--neu-shadow)`};
     border-radius: 20px;
 
     ul {
