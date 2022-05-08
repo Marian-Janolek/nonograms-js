@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { useAppContext } from "../context/appContext";
 
 const ChoosePage = () => {
-  const { languageSK, darkMode } = useAppContext();
+  const { languageSK, darkMode, createMyLevel } = useAppContext();
   const [selectedFile, setSelectedFile] = useState();
   const [size, setSize] = useState(0);
   const { pathname } = useLocation();
@@ -58,7 +58,7 @@ const ChoosePage = () => {
   for (let i = 0; i < binaryArray.length; i += size) {
     convertedNewArray.push(binaryArray.slice(i, i + size));
   }
-  console.log(convertedNewArray.length);
+
   let horHints = [];
   let vertHints = [];
 
@@ -123,10 +123,18 @@ const ChoosePage = () => {
     try {
       const file = event.target.files[0];
       const image = await resizeFile(file);
-      console.log(image);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleSubmit = () => {
+    const level = {
+      vertHints,
+      horHints,
+      result: binaryArray,
+    };
+    createMyLevel(level);
   };
 
   return (
@@ -144,12 +152,17 @@ const ChoosePage = () => {
           {languageSK ? "Vybrať súbor" : "Choose file"}
         </label>
       </form>
+      {selectedFile && (
+        <h2 style={{ marginTop: "2rem", opacity: 0.75 }}>
+          {languageSK ? "Náhľad 5x zväčšený" : "Preview 5x zoomed"}
+        </h2>
+      )}
       <img
         src={selectedFile}
         alt="selected file"
         ref={imageRef}
         style={{
-          marginTop: "4.5rem",
+          marginTop: "3rem",
           transform: selectedFile && "scale(5)",
           display: !selectedFile && "none",
         }}
@@ -165,7 +178,12 @@ const ChoosePage = () => {
         {selectedFile && (
           <Button
             text={`${languageSK ? "potvrdiť" : "submit"}`}
-            path="/custom"
+            path={`${
+              path === "medium"
+                ? "/difficulty/medium/custom"
+                : "/difficulty/hard/custom"
+            }`}
+            handleClick={handleSubmit}
           />
         )}
         <Button text={`${languageSK ? "späť" : "back"}`} path="/difficulty" />

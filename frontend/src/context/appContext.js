@@ -22,6 +22,9 @@ import {
   LANGUAGE_TOGGLE,
   LOGOUT_USER,
   THEME_TOGGLE,
+  MY_LEVEL_SUCCESS,
+  MY_LEVEL_BEGIN,
+  MY_LEVEL_FAIL,
 } from "../actions";
 import reducer from "../reducer/appReducer";
 import axios from "axios";
@@ -43,6 +46,7 @@ const initialState = {
   single_level: {},
   single_level_loading: false,
   single_level_error: false,
+  my_level: {},
   isSaved: false,
   languageSK: languageSK || false,
   darkMode: darkMode || false,
@@ -93,6 +97,15 @@ const AppProvider = ({ children }) => {
 
   const toggleTheme = () => {
     dispatch({ type: THEME_TOGGLE });
+  };
+
+  const createMyLevel = (level) => {
+    dispatch({ type: MY_LEVEL_BEGIN });
+    try {
+      dispatch({ type: MY_LEVEL_SUCCESS, payload: { level } });
+    } catch (error) {
+      dispatch({ type: MY_LEVEL_FAIL });
+    }
   };
 
   const removeUserFromLocalStorage = () => {
@@ -177,6 +190,7 @@ const AppProvider = ({ children }) => {
         path,
         setPath,
         pathToNumber,
+        createMyLevel,
       }}
     >
       {children}

@@ -15,6 +15,10 @@ import {
   LANGUAGE_TOGGLE,
   LOGOUT_USER,
   THEME_TOGGLE,
+  MY_LEVEL,
+  MY_LEVEL_SUCCESS,
+  MY_LEVEL_BEGIN,
+  MY_LEVEL_FAIL,
 } from "../actions";
 
 const reducer = (state, action) => {
@@ -77,7 +81,24 @@ const reducer = (state, action) => {
       return { ...state, languageSK: !state.languageSK };
     case THEME_TOGGLE:
       return { ...state, darkMode: !state.darkMode };
-
+    case MY_LEVEL_BEGIN:
+      return {
+        ...state,
+        single_level_loading: true,
+        single_level_error: false,
+      };
+    case MY_LEVEL_SUCCESS:
+      return {
+        ...state,
+        single_level_loading: false,
+        my_level: action.payload.level,
+      };
+    case MY_LEVEL_FAIL:
+      return {
+        ...state,
+        single_level_loading: false,
+        single_level_error: true,
+      };
     default:
       return state;
   }

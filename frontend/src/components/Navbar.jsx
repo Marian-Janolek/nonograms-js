@@ -59,6 +59,12 @@ const Wrapper = styled.nav`
       width: 5rem;
     }
   }
+  @media (min-width: 776px) {
+    width: 70%;
+  }
+  @media (min-width: 1024px) {
+    width: 50%;
+  }
 `;
 
 export default Navbar;

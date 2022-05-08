@@ -25,8 +25,8 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 5rem;
-  height: 5rem;
+  width: 4.5rem;
+  height: 4.5rem;
   box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
   border-radius: 1rem;
   position: relative;
@@ -43,6 +43,27 @@ const Wrapper = styled.div`
     opacity: 0.25;
     bottom: -40%;
     left: 0;
+  }
+  @media (max-width: 369px) {
+    width: 4rem;
+    height: 4rem;
+    span {
+      font-size: 2rem;
+    }
+  }
+  @media (max-width: 339px) {
+    width: 3.5rem;
+    height: 3.5rem;
+    span {
+      font-size: 1.5rem;
+    }
+  }
+  @media (max-width: 300px) {
+    width: 3rem;
+    height: 3rem;
+    span {
+      font-size: 1.5rem;
+    }
   }
 `;
 

@@ -31,8 +31,8 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 2rem;
-  width: 75%;
   padding: 1rem;
+  width: 20%;
   box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
   border-radius: 20px;
   background-color: ${(props) =>
@@ -112,14 +112,26 @@ const Wrapper = styled.div`
     -ms-transform: translateX(40px) rotate(360deg);
     transform: translateX(40px) rotate(360deg);
   }
-  @media (max-width: 576px) {
-    left: 9rem;
+
+  @media (max-width: 1400px) {
+    width: 30%;
   }
-  @media (max-width: 420px) {
-    left: 4rem;
+  @media (max-width: 896px) {
+    width: 50%;
   }
-  @media (max-width: 290px) {
-    left: 3.5rem;
+  @media (max-width: 668px) {
+    width: 75%;
+  }
+  @media (max-width: 430px) {
+    width: 90%;
+  }
+  @media (max-width: 340px) {
+    span {
+      font-size: 1rem;
+    }
+  }
+  @media (max-height: 680px) {
+    width: 90%;
   }
 `;
 

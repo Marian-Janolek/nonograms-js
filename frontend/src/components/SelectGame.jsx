@@ -14,11 +14,7 @@ const SelectGame = () => {
       <Button text="15 x 15" path="/selectGame/medium" />
       <Button text="20 x 20" path="/selectGame/hard" />
       <Suspense fallback={<Loading />}>
-        <Button
-          text={`${languageSK ? "späť" : "back"}`}
-          path="/"
-          icon={<BsArrowLeft />}
-        />
+        <Button text={`${languageSK ? "späť" : "back"}`} path="/" />
       </Suspense>
     </Wrapper>
   );

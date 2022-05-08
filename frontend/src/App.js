@@ -20,6 +20,7 @@ const ProtectedRoute = lazy(() => import("./pages/ProtectedRoute"));
 
 function App() {
   const { levels_loading: loading, darkMode } = useAppContext();
+
   if (loading) {
     return <Loading />;
   }
@@ -165,7 +166,15 @@ function App() {
               }
             />
             <Route
-              path="/customGame"
+              path="/difficulty/medium/custom"
+              element={
+                <ProtectedRoute>
+                  <CustomGame />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/difficulty/hard/custom"
               element={
                 <ProtectedRoute>
                   <CustomGame />

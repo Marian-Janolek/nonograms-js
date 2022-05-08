@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { useAppContext } from "../context/appContext";
 
 const HorizontalHints = ({ hints }) => {
-  const { darkMode, pathToNumber } = useAppContext();
+  const { darkMode, pathToNumber, path } = useAppContext();
   const [size, setSize] = useState();
 
   useEffect(() => {
     pathToNumber(setSize);
-  }, []);
+  }, [path]);
 
   return (
     <Wrapper darkMode={darkMode} size={size}>
@@ -41,7 +41,7 @@ const Wrapper = styled.div`
 
   .zero-span {
     font-size: ${(props) =>
-      props.size === 10 ? "1.2rem" : props.size === 15 ? "1rem" : ".8rem"};
+      props.size === 10 ? "1.2rem" : props.size === 15 ? ".95rem" : ".8rem"};
     color: ${(props) => (props.darkMode ? `var(--dark-text)` : `white`)};
     width: ${(props) =>
       props.size === 10 ? "2rem" : props.size === 15 ? "1.5rem" : "1rem"};
@@ -54,11 +54,174 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: flex-end;
     width: ${(props) =>
-      props.size === 10 ? "2rem" : props.size === 15 ? "1.5rem" : "1rem"};
+      props.size === 10 ? "2rem" : props.size === 15 ? "1.35rem" : "1rem"};
     span {
       font-size: ${(props) =>
-        props.size === 10 ? "1.2rem" : props.size === 15 ? "1rem" : ".8rem"};
+        props.size === 10 ? "1.2rem" : props.size === 15 ? ".95rem" : ".8rem"};
       color: ${(props) => (props.darkMode ? `var(--dark-text)` : `white`)};
+    }
+  }
+  @media (min-width: 676px) {
+    .zero-span {
+      font-size: ${(props) =>
+        props.size === 10
+          ? "1.7rem"
+          : props.size === 15
+          ? "1.45rem"
+          : "1.3rem"};
+      width: ${(props) =>
+        props.size === 10
+          ? "2.5rem"
+          : props.size === 15
+          ? "1.85rem"
+          : "1.45rem"};
+    }
+    .hints {
+      width: ${(props) =>
+        props.size === 10
+          ? "2.5rem"
+          : props.size === 15
+          ? "1.85rem"
+          : "1.45rem"};
+      span {
+        font-size: ${(props) =>
+          props.size === 10
+            ? "1.7rem"
+            : props.size === 15
+            ? "1.45rem"
+            : "1.3rem"};
+      }
+    }
+  }
+  @media (min-width: 530px) {
+    .zero-span {
+      font-size: ${(props) =>
+        props.size === 10
+          ? "1.5rem"
+          : props.size === 15
+          ? "1.25rem"
+          : "1.05rem"};
+      width: ${(props) =>
+        props.size === 10
+          ? "2.3rem"
+          : props.size === 15
+          ? "1.55rem"
+          : "1.15rem"};
+    }
+    .hints {
+      width: ${(props) =>
+        props.size === 10
+          ? "2.3rem"
+          : props.size === 15
+          ? "1.55rem"
+          : "1.15rem"};
+      span {
+        font-size: ${(props) =>
+          props.size === 10
+            ? "1.5rem"
+            : props.size === 15
+            ? "1.25rem"
+            : "1.05rem"};
+      }
+    }
+  }
+  @media (max-width: 395px) {
+    .zero-span {
+      font-size: ${(props) =>
+        props.size === 10 ? "1.15rem" : props.size === 15 ? ".9rem" : ".75rem"};
+      width: ${(props) =>
+        props.size === 10 ? "1.9rem" : props.size === 15 ? "1.3rem" : ".95rem"};
+    }
+    .hints {
+      width: ${(props) =>
+        props.size === 10 ? "1.9rem" : props.size === 15 ? "1.3rem" : ".95rem"};
+      span {
+        font-size: ${(props) =>
+          props.size === 10
+            ? "1.15rem"
+            : props.size === 15
+            ? ".9rem"
+            : ".75rem"};
+      }
+    }
+  }
+  @media (max-width: 375px) {
+    .zero-span {
+      font-size: ${(props) =>
+        props.size === 10 ? "1.1rem" : props.size === 15 ? ".85rem" : ".7rem"};
+      width: ${(props) =>
+        props.size === 10 ? "1.9rem" : props.size === 15 ? "1.25rem" : ".9rem"};
+      text-align: center;
+    }
+    .hints {
+      width: ${(props) =>
+        props.size === 10 ? "1.9rem" : props.size === 15 ? "1.25rem" : ".9rem"};
+      span {
+        font-size: ${(props) =>
+          props.size === 10
+            ? "1.1rem"
+            : props.size === 15
+            ? ".85rem"
+            : ".7rem"};
+      }
+    }
+  }
+  @media (max-width: 360px) {
+    .zero-span {
+      font-size: ${(props) =>
+        props.size === 10 ? "1.05rem" : props.size === 15 ? ".8rem" : ".65rem"};
+      width: ${(props) =>
+        props.size === 10
+          ? "1.75rem"
+          : props.size === 15
+          ? "1.2rem"
+          : ".85rem"};
+      text-align: center;
+    }
+    .hints {
+      width: ${(props) =>
+        props.size === 10
+          ? "1.75rem"
+          : props.size === 15
+          ? "1.2rem"
+          : ".85rem"};
+      span {
+        font-size: ${(props) =>
+          props.size === 10
+            ? "1.05rem"
+            : props.size === 15
+            ? ".8rem"
+            : ".65rem"};
+      }
+    }
+  }
+  @media (max-width: 340px) {
+    .zero-span {
+      font-size: ${(props) =>
+        props.size === 10 ? "1rem" : props.size === 15 ? ".75rem" : ".6rem"};
+      width: ${(props) =>
+        props.size === 10
+          ? "1.55rem"
+          : props.size === 15
+          ? "1.15rem"
+          : ".8rem"};
+      text-align: center;
+    }
+    .hints {
+      width: ${(props) =>
+        props.size === 10
+          ? "1.55rem"
+          : props.size === 15
+          ? "1.15rem"
+          : ".8rem"};
+      span {
+        font-size: ${(props) =>
+          props.size === 10
+            ? "1.0rem"
+            : props.size === 15
+            ? ".75rem"
+            : ".6rem"};
+      }
     }
   }
 `;

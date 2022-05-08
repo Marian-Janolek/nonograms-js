@@ -16,7 +16,6 @@ import { useAppContext } from "../context/appContext";
 import { level_url } from "../utils/constants";
 import Pdf from "react-to-pdf";
 
-const BsArrowLeft = lazy(() => import("../utils/icons/arrowLeft"));
 const FaPencilAlt = lazy(() => import("../utils/icons/pencil"));
 const FaTimes = lazy(() => import("../utils/icons/times"));
 const FaRegLightbulb = lazy(() => import("../utils/icons/hint"));
@@ -91,13 +90,10 @@ const LevelPage = () => {
         <button className="save" onClick={handleSave}>
           <span> {languageSK ? "uložiť" : "save"} </span>
         </button>
-        <Suspense fallback={<Loading />}>
-          <Button
-            text={`${languageSK ? "späť" : "back"}`}
-            path={`/selectGame/${path}`}
-            icon={<BsArrowLeft />}
-          />
-        </Suspense>
+        <Button
+          text={`${languageSK ? "späť" : "back"}`}
+          path={`/selectGame/${path}`}
+        />
       </div>
       <Suspense fallback={<Loading />}>
         <div className="btn-bar">
@@ -221,6 +217,36 @@ const Wrapper = styled.div`
       font-size: 2.5rem;
       svg path {
         stroke: ${(props) => (props.darkMode ? `var(--dark-text)` : `black`)};
+      }
+    }
+  }
+  @media (min-width: 676px) {
+    .btn-bar {
+      bottom: 3%;
+    }
+    .flex {
+      margin-top: 1.5rem;
+      flex-direction: row;
+    }
+  }
+  @media (max-height: 680px) {
+    .save {
+      height: 3rem;
+      width: 13rem;
+      border-radius: 15px;
+    }
+    .flex {
+      margin-top: 0.5rem;
+      gap: 1rem;
+    }
+    .btn-bar {
+      bottom: 2%;
+      button {
+        width: 3rem;
+        height: 3rem;
+      }
+      .icon {
+        font-size: 2rem;
       }
     }
   }

@@ -9,7 +9,7 @@ const About = () => {
   const { languageSK, darkMode } = useAppContext();
   return (
     <Wrapper className="wrapper" darkMode={darkMode}>
-      <Heading heading={`${languageSK ? "O hre" : "About Game"}`} />
+      <Heading heading={`${languageSK ? "O hre" : "About"}`} />
       <div className="copyright">
         <img src={logo} alt="about" />
         <div className="info">
@@ -77,8 +77,9 @@ const Wrapper = styled.div`
     padding: 1rem;
     box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
     border-radius: 20px;
+
     img {
-      width: 20%;
+      width: 4.5rem;
     }
     span {
       font-weight: 200;
@@ -91,6 +92,7 @@ const Wrapper = styled.div`
     margin-top: 1.5rem;
     box-shadow: ${(props) => (props.darkMode ? `none` : `var(--neu-shadow)`)};
     border-radius: 20px;
+
     ul {
       padding-left: 1rem;
       list-style: circle;
@@ -98,8 +100,86 @@ const Wrapper = styled.div`
   }
   .settings {
     margin-bottom: 1.5rem;
-    margin-top: 0;
-    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .copyright,
+    .about,
+    .settings {
+      width: 45%;
+    }
+  }
+  @media (max-width: 1024px) {
+    .copyright,
+    .about,
+    .settings {
+      width: 60%;
+    }
+  }
+  @media (max-width: 776px) {
+    .copyright,
+    .about,
+    .settings {
+      width: 75%;
+    }
+  }
+  @media (max-width: 565px) {
+    .copyright,
+    .about,
+    .settings {
+      width: 100%;
+    }
+  }
+  @media (max-width: 430px) {
+    .copyright {
+      padding: 0.5rem 1rem;
+      h3 {
+        font-size: 1rem;
+      }
+      p {
+        font-size: 0.8rem;
+      }
+    }
+    .about,
+    .settings {
+      margin-top: 1rem;
+    }
+    .settings {
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
+  }
+  @media (max-width: 360px) {
+    .copyright {
+      span {
+        font-size: 13px;
+      }
+    }
+    .about,
+    .settings {
+      font-size: 13px;
+    }
+  }
+  @media (max-width: 300px) {
+    .about,
+    .settings {
+      padding: 0rem 0.5rem;
+    }
+  }
+
+  @media (max-height: 680px) {
+    .copyright {
+      padding: 0.5rem 1rem;
+    }
+    .about,
+    .settings {
+      margin-top: 1rem;
+      font-size: 12px;
+    }
+    .settings {
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
   }
 `;
 

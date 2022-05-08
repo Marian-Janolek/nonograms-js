@@ -119,9 +119,8 @@ const Login = () => {
 
 const Wrapper = styled.div`
   .login {
-    width: 85vw;
-    height: 720px;
-    padding: 60px 20px 35px 20px;
+    height: 660px;
+    padding: 20px 20px 35px 20px;
     border-radius: 40px;
     background-color: ${(props) =>
       props.darkMode ? "var(--dark-bg)" : `var(--main-color)`};
@@ -146,21 +145,20 @@ const Wrapper = styled.div`
   }
   .title {
     text-align: center;
-    padding-top: 24px;
+    padding-top: 1rem;
     letter-spacing: var(--spacing);
     text-transform: capitalize;
     font-weight: var(--font-semi-bold);
   }
   .subtitle {
     text-align: center;
-    padding-top: 7px;
     letter-spacing: var(--spacing);
     text-transform: capitalize;
     font-weight: var(--font-semi-bold);
   }
   .fields {
     width: 100%;
-    padding: 40px 5px 5px 5px;
+    padding: 20px 5px 5px 5px;
 
     .username,
     .email,
@@ -234,10 +232,9 @@ const Wrapper = styled.div`
     }
   }
 
-  @media (min-width: 430px) {
+  @media (max-width: 430px) {
     .login {
       height: 750px;
-      width: 75vw;
     }
 
     p {
@@ -245,6 +242,33 @@ const Wrapper = styled.div`
       button {
         font-size: var(--bigger-font-size);
       }
+    }
+  }
+  @media (max-width: 370px) {
+    .login {
+      padding: 20px 10px 35px 10px;
+    }
+  }
+  @media (max-height: 680px) {
+    .login {
+      height: 620px;
+    }
+    .fields {
+      .username,
+      .email,
+      .password {
+        input {
+          padding: 18px 10px 18px 5px;
+        }
+      }
+      .signin-btn {
+        height: 55px;
+      }
+    }
+  }
+  @media (max-width: 320px) {
+    .login {
+      width: 95vw;
     }
   }
 `;

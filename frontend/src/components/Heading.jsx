@@ -19,6 +19,9 @@ const Wrapper = styled.div`
     props.darkMode
       ? `var(--dark-text)`
       : `rgba(255, 255, 255, 0.5) 1px 2px 1px`};
+  @media (max-width: 360px) {
+    font-size: 2rem;
+  }
 `;
 
 export default Heading;

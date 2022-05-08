@@ -12,6 +12,7 @@ const GridBoard = ({ result, currentID }) => {
     darkMode,
     setPath,
     pathToNumber,
+    path,
   } = useAppContext();
   const [size, setSize] = useState();
   const [gameArray, setGameArray] = useState();
@@ -35,7 +36,7 @@ const GridBoard = ({ result, currentID }) => {
     } else if (size === 20) {
       setGameArray(Array(400).fill(2));
     }
-  }, [size]);
+  }, [size, path]);
 
   const win = (candidateArray, winArray) => {
     return (

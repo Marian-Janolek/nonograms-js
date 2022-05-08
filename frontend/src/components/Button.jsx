@@ -52,6 +52,11 @@ const Wrapper = styled.div`
       font-size: 3rem;
     }
   }
+  @media (max-height: 680px) {
+    height: 3rem;
+    width: 13rem;
+    border-radius: 15px;
+  }
 `;
 
 export default Button;

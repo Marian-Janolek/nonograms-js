@@ -88,3 +88,22 @@ button {
   padding-bottom: 4rem;
   height: 100vh;
 }
+
+@media (max-width: 430px) {
+  .wrapper {
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .wrapper {
+    padding-top: 1rem;
+  }
+}
+
+@media (max-height: 680px) {
+  .wrapper {
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+  }
+}

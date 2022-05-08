@@ -43,6 +43,11 @@ const Wrapper = styled.div`
     gap: 3rem;
     padding-bottom: 4rem;
   }
+  @media (max-width: 700px) {
+    .select-btns {
+      padding-bottom: 1rem;
+    }
+  }
 `;
 
 export default HomeMenu;

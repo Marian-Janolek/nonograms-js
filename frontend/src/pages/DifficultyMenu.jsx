@@ -36,6 +36,7 @@ const Wrapper = styled.main`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: center;
     flex-direction: row;
     gap: 1rem;
     margin-top: 1.5rem;
@@ -51,6 +52,16 @@ const Wrapper = styled.main`
   }
   .back-btn {
     margin-top: 2rem;
+  }
+  @media (max-height: 680px) {
+    .cards {
+      margin-top: 0;
+    }
+  }
+  @media (min-width: 776px) {
+    .cards {
+      width: 70%;
+    }
   }
 `;
 
