@@ -32,7 +32,7 @@ const ChoosePage = () => {
       for (let i = 0; i < imgData.data.length; i += 4) {
         let count = imgData.data[i] + imgData.data[i + 1] + imgData.data[i + 2];
         let colour = 0;
-        if (count > 450) colour = 255;
+        if (count > 383) colour = 255;
         imgData.data[i] = colour;
         imgData.data[i + 1] = colour;
         imgData.data[i + 2] = colour;

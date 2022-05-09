@@ -4,7 +4,7 @@ const LevelSchema = new mongoose.Schema(
   {
     difficulty: {
       type: String,
-      enum: ["easy", "medium", "hard"],
+      enum: ["easy", "medium", "hard", "test"],
       required: [true, "Please provide difficulty"],
     },
     verHints: {

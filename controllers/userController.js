@@ -1,17 +1,19 @@
-const User = require('../models/User');
-const StatusCodes = require('http-status-codes');
+const User = require("../models/User");
+const StatusCodes = require("http-status-codes");
 
 const register = async (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
-    throw new Error('Please provide all values');
+    throw new Error("Please provide all values");
   }
   const isFirstAccount = (await User.countDocuments({})) === 0;
   const isAdmin = isFirstAccount ? true : false;
 
   const userAlreadyExist = await User.findOne({ email });
   if (userAlreadyExist) {
-    throw new Error('Email already exist');
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ msg: "Email Already Exist!" });
   }
   const user = await User.create({ name, email, password, isAdmin });
 
@@ -28,16 +30,20 @@ const login = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    throw new Error('Please provide all values!');
+    throw new Error("Please provide all values!");
   }
-  let user = await User.findOne({ email }).select('+password');
+  let user = await User.findOne({ email }).select("+password");
   if (!user) {
-    throw new Error('Invalid credentials!');
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ msg: "Invalid credentials!" });
   }
 
   const isPasswordCorrect = await user.comparePassword(password);
   if (!isPasswordCorrect) {
-    throw new Error('Invalid credentials!');
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ msg: "Invalid credentials!" });
   }
 
   const token = user.createJWT();
@@ -51,7 +57,7 @@ const updateUser = async (req, res) => {
 
   const user = await User.findOne({ _id: req.user.userId });
   if (!user) {
-    throw new Error('User does not exists!');
+    throw new Error("User does not exists!");
   }
   user.email = email;
   user.name = name;

@@ -11,11 +11,13 @@ const getAllLevels = async (req, res) => {
   const easy_levels = await Level.find({ difficulty: "easy" });
   const medium_levels = await Level.find({ difficulty: "medium" });
   const hard_levels = await Level.find({ difficulty: "hard" });
+  const test_levels = await Level.find({ difficulty: "test" });
   res.status(StatusCodes.OK).json({
     levels: {
       easy_levels,
       medium_levels,
       hard_levels,
+      test_levels,
     },
   });
 };
