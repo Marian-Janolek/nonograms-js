@@ -84,22 +84,18 @@ const Wrapper = styled.div`
       }
     }
   }
-  @media (min-width: 530px) {
+  /* @media (min-width: 530px) {
     width: ${(props) =>
-      props.size === 10 ? "2.3rem" : props.size === 15 ? "1.55rem" : "1.15rem"};
+    props.size === 10 ? "2.3rem" : props.size === 15 ? "1.55rem" : "1.15rem"};
     height: ${(props) =>
-      props.size === 10 ? "2.3rem" : props.size === 15 ? "1.55rem" : "1.15rem"};
+    props.size === 10 ? "2.3rem" : props.size === 15 ? "1.55rem" : "1.15rem"};
     span {
       svg {
         font-size: ${(props) =>
-          props.size === 10
-            ? "2.3rem"
-            : props.size === 15
-            ? "1.55rem"
-            : "1.15rem"};
+    props.size === 10 ? "2.3rem" : props.size === 15 ? "1.55rem" : "1.15rem"};
       }
     }
-  }
+  } */
 
   @media (max-width: 395px) {
     width: ${(props) =>
@@ -162,6 +158,34 @@ const Wrapper = styled.div`
             : props.size === 15
             ? "1.15rem"
             : ".8rem"};
+      }
+    }
+  }
+  @media (max-width: 320px) {
+    width: ${(props) =>
+      props.size === 10 ? "1.45rem" : props.size === 15 ? "1.05rem" : ".75rem"};
+    height: ${(props) =>
+      props.size === 10 ? "1.45rem" : props.size === 15 ? "1.05rem" : ".75rem"};
+    span {
+      svg {
+        font-size: ${(props) =>
+          props.size === 10
+            ? "1.45rem"
+            : props.size === 15
+            ? "1.05rem"
+            : ".75rem"};
+      }
+    }
+  }
+  @media (max-width: 300px) {
+    width: ${(props) =>
+      props.size === 10 ? "1.4rem" : props.size === 15 ? "1rem" : ".7rem"};
+    height: ${(props) =>
+      props.size === 10 ? "1.4rem" : props.size === 15 ? "1rem" : ".7rem"};
+    span {
+      svg {
+        font-size: ${(props) =>
+          props.size === 10 ? "1.4rem" : props.size === 15 ? "1rem" : ".7rem"};
       }
     }
   }

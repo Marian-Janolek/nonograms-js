@@ -8,7 +8,6 @@ import Loading from "./Loading";
 
 const MdAlternateEmail = lazy(() => import("../utils/icons/mail"));
 const AiOutlineUser = lazy(() => import("../utils/icons/user"));
-const AiOutlineLock = lazy(() => import("../utils/icons/lock"));
 
 const Profile = () => {
   const { languageSK, darkMode, user } = useAppContext();
@@ -25,26 +24,18 @@ const Profile = () => {
           </h2>
           <h3>
             {languageSK
-              ? "Zmena prihlasovacích údajov:"
-              : "Change your credentails:"}{" "}
+              ? "Súhrn prihlasovacích údajov:"
+              : "Check your credentails:"}{" "}
           </h3>
           <form>
             <div className="fields">
               <div className="username">
                 <AiOutlineUser />
-                <input type="text" placeholder="Username" />
+                <input type="text" placeholder={user.name} />
               </div>
               <div className="email">
                 <MdAlternateEmail />
-                <input type="email" placeholder="Enter email" />
-              </div>
-              <div className="password">
-                <AiOutlineLock />
-                <input type="password" placeholder="Password" />
-              </div>
-              <div className="confirmPassword">
-                <AiOutlineLock />
-                <input type="password" placeholder="Confirm password" />
+                <input type="email" placeholder={user.email} />
               </div>
             </div>
           </form>
@@ -79,6 +70,7 @@ const Wrapper = styled.div`
       width: 100%;
       height: 100%;
       border-radius: 50%;
+      filter: ${(props) => (props.darkMode ? "invert(60%)" : "black")};
     }
   }
   .text {

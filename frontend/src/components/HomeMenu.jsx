@@ -10,7 +10,7 @@ const HomeMenu = () => {
 
       <div className="select-btns">
         <Button
-          text={`${languageSK ? "hrať hru" : "playgame"}`}
+          text={`${languageSK ? "hrať hru" : "play game"}`}
           path="selectGame"
         />
         <Button
