@@ -11,7 +11,6 @@ const Navbar = () => {
         <AiOutlineTrophy />
       </button>
       <Link to="/profile" title="Profile">
-        {" "}
         <button type="button" title="AiOutlineUser">
           <AiOutlineUser />
         </button>

@@ -75,7 +75,7 @@ const Wrapper = styled.div`
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: 90%;
+    /* width: 90%; */
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -128,6 +128,11 @@ const Wrapper = styled.div`
   h3 {
     line-height: 2rem;
     margin-bottom: 1rem;
+  }
+  @media (max-width: 430px) {
+    .container {
+      width: 90%;
+    }
   }
 `;
 

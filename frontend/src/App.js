@@ -41,23 +41,8 @@ function App() {
               path="/"
               element={
                 <ProtectedRoute>
-                  <Home />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <Home />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <Home />
+                  {" "}
+                  <Home />{" "}
                 </ProtectedRoute>
               }
             />
@@ -65,7 +50,8 @@ function App() {
               path="/profile"
               element={
                 <ProtectedRoute>
-                  <ProfilePage />
+                  {" "}
+                  <ProfilePage />{" "}
                 </ProtectedRoute>
               }
             />
@@ -73,7 +59,8 @@ function App() {
               path="/selectGame"
               element={
                 <ProtectedRoute>
-                  <SelectGame />
+                  {" "}
+                  <SelectGame />{" "}
                 </ProtectedRoute>
               }
             />
@@ -81,7 +68,8 @@ function App() {
               path="/selectGame/easy"
               element={
                 <ProtectedRoute>
-                  <EasyMenu />
+                  {" "}
+                  <EasyMenu />{" "}
                 </ProtectedRoute>
               }
             />
@@ -89,7 +77,8 @@ function App() {
               path="/selectGame/easy/:levelId"
               element={
                 <ProtectedRoute>
-                  <LevelPage />
+                  {" "}
+                  <LevelPage />{" "}
                 </ProtectedRoute>
               }
             />
@@ -97,7 +86,8 @@ function App() {
               path="/selectGame/medium"
               element={
                 <ProtectedRoute>
-                  <MediumMenu />
+                  {" "}
+                  <MediumMenu />{" "}
                 </ProtectedRoute>
               }
             />
@@ -105,7 +95,8 @@ function App() {
               path="/selectGame/medium/:levelId"
               element={
                 <ProtectedRoute>
-                  <LevelPage />
+                  {" "}
+                  <LevelPage />{" "}
                 </ProtectedRoute>
               }
             />
@@ -113,7 +104,8 @@ function App() {
               path="/selectGame/hard"
               element={
                 <ProtectedRoute>
-                  <HardMenu />
+                  {" "}
+                  <HardMenu />{" "}
                 </ProtectedRoute>
               }
             />
@@ -121,7 +113,8 @@ function App() {
               path="/selectGame/hard/:levelId"
               element={
                 <ProtectedRoute>
-                  <LevelPage />
+                  {" "}
+                  <LevelPage />{" "}
                 </ProtectedRoute>
               }
             />
@@ -129,7 +122,8 @@ function App() {
               path="/settings"
               element={
                 <ProtectedRoute>
-                  <SettingsPage />
+                  {" "}
+                  <SettingsPage />{" "}
                 </ProtectedRoute>
               }
             />
@@ -137,7 +131,8 @@ function App() {
               path="/about"
               element={
                 <ProtectedRoute>
-                  <AboutPage />
+                  {" "}
+                  <AboutPage />{" "}
                 </ProtectedRoute>
               }
             />
@@ -145,7 +140,8 @@ function App() {
               path="/difficulty"
               element={
                 <ProtectedRoute>
-                  <CustomDIfficulty />
+                  {" "}
+                  <CustomDIfficulty />{" "}
                 </ProtectedRoute>
               }
             />
@@ -153,7 +149,8 @@ function App() {
               path="/difficulty/medium"
               element={
                 <ProtectedRoute>
-                  <ChoosePage />
+                  {" "}
+                  <ChoosePage />{" "}
                 </ProtectedRoute>
               }
             />
@@ -161,7 +158,8 @@ function App() {
               path="/difficulty/hard"
               element={
                 <ProtectedRoute>
-                  <ChoosePage />
+                  {" "}
+                  <ChoosePage />{" "}
                 </ProtectedRoute>
               }
             />
@@ -169,7 +167,8 @@ function App() {
               path="/difficulty/medium/custom"
               element={
                 <ProtectedRoute>
-                  <CustomGame />
+                  {" "}
+                  <CustomGame />{" "}
                 </ProtectedRoute>
               }
             />
@@ -177,7 +176,8 @@ function App() {
               path="/difficulty/hard/custom"
               element={
                 <ProtectedRoute>
-                  <CustomGame />
+                  {" "}
+                  <CustomGame />{" "}
                 </ProtectedRoute>
               }
             />

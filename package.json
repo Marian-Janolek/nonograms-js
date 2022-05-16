@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "server": "nodemon server.js --ignore frontend"
+    "server": "nodemon server.js --ignore frontend",
+    "install-fe": "cd frontend && npm install",
+    "build-fe": "cd frontend && npm run build",
+    "heroku-postbuild": "npm run install-fe && npm run build-fe"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +27,8 @@
   },
   "devDependencies": {
     "jest": "^28.1.0"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }

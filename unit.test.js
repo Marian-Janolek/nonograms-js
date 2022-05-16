@@ -41,26 +41,26 @@ test("Register user", async () => {
   expect(data).toHaveProperty("user");
 });
 
-// test("Login user", async () => {
-//   const { data } = await axios.post(`${url}/login`, user);
-//   expect(data).toHaveProperty("token");
-// });
+test("Login user", async () => {
+  const { data } = await axios.post(`${url}/login`, user);
+  expect(data).toHaveProperty("token");
+});
 
-// test("Add New Level", async () => {
-//   const { data } = await axios.post(`${url}/newLevel`, test_level);
-//   expect(data.level).toHaveProperty("_id");
-// });
+test("Add New Level", async () => {
+  const { data } = await axios.post(`${url}/newLevel`, test_level);
+  expect(data.level).toHaveProperty("_id");
+});
 
-// test("Get single level", async () => {
-//   const { data } = await axios.post(`${url}/newLevel`, test_level);
-//   expect(data.level).toHaveProperty("_id");
-//   const id = data.level._id;
+test("Get single level", async () => {
+  const { data } = await axios.post(`${url}/newLevel`, test_level);
+  expect(data.level).toHaveProperty("_id");
+  const id = data.level._id;
 
-//   const response = await axios.get(`${url}/level/${id}`);
-//   expect(response.data.level).toHaveProperty("_id");
-// });
+  const response = await axios.get(`${url}/level/${id}`);
+  expect(response.data.level).toHaveProperty("_id");
+});
 
-// test("Get all levels", async () => {
-//   const { data } = await axios.get(`${url}/level/all`);
-//   expect(data).toHaveProperty("levels");
-// });
+test("Get all levels", async () => {
+  const { data } = await axios.get(`${url}/level/all`);
+  expect(data).toHaveProperty("levels");
+});

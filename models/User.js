@@ -23,10 +23,6 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    solvedLevels: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Level",
-    },
   },
   { timestamps: true }
 );

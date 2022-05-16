@@ -13,6 +13,7 @@ import AboutPage from "./AboutPage";
 import SettingsPage from "./SettingsPage";
 import ProtectedRoute from "./ProtectedRoute";
 import ChoosePage from "./ChoosePage";
+import CustomDIfficulty from "./CustomDIfficulty";
 
 export {
   Home,
@@ -30,4 +31,5 @@ export {
   SettingsPage,
   ProtectedRoute,
   ChoosePage,
+  CustomDIfficulty,
 };

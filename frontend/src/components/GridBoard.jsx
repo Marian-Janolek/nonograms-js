@@ -58,7 +58,7 @@ const GridBoard = ({ result, currentID }) => {
     }
   }
 
-  if (win(helper, result) === true) {
+  if (win(helper, result) !== true) {
     openModal();
   }
 

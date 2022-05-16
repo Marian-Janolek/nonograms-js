@@ -4,7 +4,6 @@ import Button from "./Button";
 import SelectGame from "./SelectGame";
 import LevelCard from "./LevelCard";
 import Profile from "./Profile";
-import CircleProgress from "./CircleProgress";
 import Cell from "./Cell";
 import GridBoard from "./GridBoard";
 import VerticalHints from "./VerticalHints";
@@ -23,7 +22,6 @@ export {
   SelectGame,
   LevelCard,
   Profile,
-  CircleProgress,
   Cell,
   GridBoard,
   VerticalHints,
